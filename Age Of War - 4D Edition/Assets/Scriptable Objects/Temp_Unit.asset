@@ -16,5 +16,5 @@ MonoBehaviour:
   health: 5
   damage: 1
   movementSpeed: 1
-  spawnCooldown: 2
+  trainingTime: 2
   cost: 0

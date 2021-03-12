@@ -34,7 +34,7 @@ public class UnitSpawner : MonoBehaviour
             unitData = unitObject.GetComponent<UnitControls>().unit;
 
             unitObject.GetComponent<SpriteRenderer>().sprite = unitData.artwork;
-            cooldown = (float)unitData.spawnCooldown;
+            cooldown = (float)unitData.trainingTime;
             isOnCooldown = true;
         }
     }

@@ -11,7 +11,7 @@ public class Unit : ScriptableObject
     public int damage;
 
     public int movementSpeed;
-    public float spawnCooldown;
+    public int trainingTime;
 
     public int cost;
 }
