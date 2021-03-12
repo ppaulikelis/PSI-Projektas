@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class UnitSpawner : MonoBehaviour
 {
-    GameObject unitPrefab;
+    GameObject unitObject;
+    Unit unitData;
 
     public bool isOnCooldown = false;
     public float cooldown = 0f;
@@ -22,15 +23,25 @@ public class UnitSpawner : MonoBehaviour
         
     }
 
-    public void GenerateUnit(GameObject prefab)
+    public void GenerateUnit(Unit unit)
     {
         if(!isOnCooldown)
         {
-            unitPrefab = Instantiate(prefab, transform.position, transform.rotation);
-            UnitControls script = unitPrefab.GetComponent<UnitControls>();
-            Unit unitData = script.unit;
-            cooldown = unitData.spawnCooldown;
+            unitObject = new GameObject("Unit",typeof(SpriteRenderer),typeof(UnitControls));
+            unitObject.transform.position = transform.position;
+     
+            unitObject.GetComponent<UnitControls>().unit = unit;
+            unitData = unitObject.GetComponent<UnitControls>().unit;
+
+            unitObject.GetComponent<SpriteRenderer>().sprite = unitData.artwork;
+            cooldown = (float)unitData.spawnCooldown;
             isOnCooldown = true;
         }
     }
 }
+
+public class UnitControls : MonoBehaviour
+{
+    public Unit unit;
+}
+

@@ -5,10 +5,12 @@ using UnityEngine;
 [CreateAssetMenu]
 public class Unit : ScriptableObject
 {
-    public float health;
-    public float damage;
+    public Sprite artwork;
 
-    public float movementSpeed;
+    public int health;
+    public int damage;
+
+    public int movementSpeed;
     public float spawnCooldown;
 
     public int cost;
