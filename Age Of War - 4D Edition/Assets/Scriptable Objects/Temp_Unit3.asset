@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e52f4b1426f8514db239ed00ccfb7b0, type: 3}
-  m_Name: Temp_Unit
+  m_Name: Temp_Unit3
   m_EditorClassIdentifier: 
-  artwork: {fileID: -9095717837082945937, guid: 34587324d412940a79d530020c957dc0, type: 3}
-  health: 5
-  damage: 1
-  movementSpeed: 2
-  trainingTime: 2
+  artwork: {fileID: 7482667652216324306, guid: db750325989564987a34393247d883b4, type: 3}
+  health: 10
+  damage: 4
+  movementSpeed: 1
+  trainingTime: 4
   cost: 0
