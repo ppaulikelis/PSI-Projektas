@@ -19,14 +19,14 @@ public class CameraController : MonoBehaviour
 
         if (Input.GetKey("d") || Input.mousePosition.x >= Screen.width - panBorderThickness)
         {
-            pos.x -= panSpeed * Time.deltaTime; 
+            pos.x += panSpeed * Time.deltaTime; 
         }
         if (Input.GetKey("a") || Input.mousePosition.x <= panBorderThickness)
         {
-            pos.x += panSpeed * Time.deltaTime;
+            pos.x -= panSpeed * Time.deltaTime;
         }
 
-        pos.x = Mathf.Clamp(pos.x, -xLimit, 0);
+        pos.x = Mathf.Clamp(pos.x, 0, xLimit);
 
         transform.position = pos;
     }
