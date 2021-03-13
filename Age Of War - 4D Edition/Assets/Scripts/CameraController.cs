@@ -7,6 +7,7 @@ public class CameraController : MonoBehaviour
     public float panSpeed = 20f;
     public float panBorderThickness = 100f;
     public float xLimit = 27f;
+
     // Start is called before the first frame update
     void Start()
     {
