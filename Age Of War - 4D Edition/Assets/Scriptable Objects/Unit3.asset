@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 253f00a7d1371f243be586f20d0a3695, type: 3}
   m_Name: Unit3
   m_EditorClassIdentifier: 
-  artwork: {fileID: 0}
-  health: 0
-  damage: 0
-  movementSpeed: 0
-  trainingTime: 0
+  artwork: {fileID: 7482667652216324306, guid: db750325989564987a34393247d883b4, type: 3}
+  health: 10
+  damage: 4
+  movementSpeed: 1
+  trainingTime: 4
   cost: 0
