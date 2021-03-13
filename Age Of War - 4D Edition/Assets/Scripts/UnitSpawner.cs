@@ -5,21 +5,21 @@ using UnityEngine.UI;
 
 public class UnitSpawner : MonoBehaviour
 {
-    public Queue<Unit> unitsQueue;
+    Queue<Unit> unitsQueue;
     Unit currentUnit;
 
     public Slider slider;
     public Toggle[] toggles;
 
-    public bool isTraining = false;
-    public float cooldown = 0f;
+    bool isTraining = false;
+    float cooldown = 0f;
 
-    private void Start()
+    void Start()
     {
         unitsQueue = new Queue<Unit>();
     }
 
-    public void Update()
+    void Update()
     {
        if(!isTraining && unitsQueue.Count > 0)  // if queue has units left: set cooldown to its training time, start training
         {
@@ -63,7 +63,7 @@ public class UnitSpawner : MonoBehaviour
         }
     }
 
-    public void GenerateUnit(Unit unit) // code to be run when button is pressed
+    void GenerateUnit(Unit unit) // code to be run when button is pressed
     {
         if(unitsQueue.Count < 5)
         {
@@ -76,7 +76,7 @@ public class UnitControls : MonoBehaviour
 {
     public Unit unitData;
 
-    private void Update()   // temporary code to test movement
+    void Update()   // temporary code to test movement
     {
         gameObject.transform.position += Vector3.right * unitData.movementSpeed * Time.deltaTime;
 
