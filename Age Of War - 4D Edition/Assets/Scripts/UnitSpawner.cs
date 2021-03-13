@@ -63,7 +63,7 @@ public class UnitSpawner : MonoBehaviour
         }
     }
 
-    void GenerateUnit(Unit unit) // code to be run when button is pressed
+    public void GenerateUnit(Unit unit) // code to be run when button is pressed
     {
         if(unitsQueue.Count < 5)
         {
@@ -76,7 +76,7 @@ public class UnitControls : MonoBehaviour
 {
     public Unit unitData;
 
-    void Update()   // temporary code to test movement
+    void Update()   // temporary code to test movement (other code related to Units goes here)
     {
         gameObject.transform.position += Vector3.right * unitData.movementSpeed * Time.deltaTime;
 
