@@ -346,13 +346,49 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 387738430}
     m_Modifications:
-    - target: {fileID: 2082455818170029378, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_Name
-      value: Unit Control
+    - target: {fileID: 1082627090, guid: e1986e648a78aa848846ead63b944d36, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2082455818217197160, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_Name
-      value: Sell Turret Button
+    - target: {fileID: 1082627091, guid: e1986e648a78aa848846ead63b944d36, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1082627091, guid: e1986e648a78aa848846ead63b944d36, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1082627091, guid: e1986e648a78aa848846ead63b944d36, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 903
+      objectReference: {fileID: 0}
+    - target: {fileID: 1082627091, guid: e1986e648a78aa848846ead63b944d36, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 508
+      objectReference: {fileID: 0}
+    - target: {fileID: 1082627091, guid: e1986e648a78aa848846ead63b944d36, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.03937008
+      objectReference: {fileID: 0}
+    - target: {fileID: 1082627091, guid: e1986e648a78aa848846ead63b944d36, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.03937008
+      objectReference: {fileID: 0}
+    - target: {fileID: 1082627091, guid: e1986e648a78aa848846ead63b944d36, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.03937008
+      objectReference: {fileID: 0}
+    - target: {fileID: 1082627091, guid: e1986e648a78aa848846ead63b944d36, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1082627093, guid: e1986e648a78aa848846ead63b944d36, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1082627094, guid: e1986e648a78aa848846ead63b944d36, type: 3}
+      propertyPath: m_RenderMode
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2082455818263358906, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_AnchorMax.x
@@ -362,54 +398,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2082455818640773060, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_Name
-      value: Special Attack Button
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455818780224066, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_Name
-      value: Create U2 Button
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455818780224076, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455818780224076, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 2082455818780224076, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 134360229}
-    - target: {fileID: 2082455818780224076, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455818780224076, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GenerateUnit
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455818780224076, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnitSpawner, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455818780224076, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 11400000, guid: cf763621fcaf09f498f48ac8ab74145d, type: 2}
-    - target: {fileID: 2082455818780224076, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: Unit, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455818876034485, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_Name
-      value: Turret Control
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455818945877899, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: orthographic size
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 2082455819037886841, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_Name
       value: UI
@@ -458,78 +450,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2082455819040539410, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_Name
-      value: Special Control
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455819043477403, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_Name
-      value: Build T3 Button
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455819086741112, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_Name
-      value: Tower Control
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455819249808859, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_Name
-      value: Create U3 Button
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455819249808869, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455819249808869, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 2082455819249808869, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 134360229}
-    - target: {fileID: 2082455819249808869, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455819249808869, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GenerateUnit
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455819249808869, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnitSpawner, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455819249808869, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 11400000, guid: e2d01feddacdbc746bb874f8b860b91e, type: 2}
-    - target: {fileID: 2082455819249808869, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: Unit, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455819515209696, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_Name
-      value: Evolve Button
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455819693079515, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_Name
-      value: Build Tower Button
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455819755987077, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_Text
-      value: Units
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455819818931749, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_Name
-      value: Top Panel
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455819896385383, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_Name
-      value: Build T2 Button
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455820026460763, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -485
-      objectReference: {fileID: 0}
     - target: {fileID: 2082455820046023005, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -538,46 +462,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2082455820076629397, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_Name
-      value: Build T1 Button
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455820163255441, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455820163255441, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 2082455820163255441, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 134360229}
-    - target: {fileID: 2082455820163255441, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455820163255441, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GenerateUnit
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455820163255441, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnitSpawner, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455820163255441, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 11400000, guid: 05c8f4494f80f724f9c552ce479c4844, type: 2}
-    - target: {fileID: 2082455820163255441, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: Unit, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455820163255447, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_Name
-      value: Create U1 Button
-      objectReference: {fileID: 0}
     - target: {fileID: 6788979025786455990, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
