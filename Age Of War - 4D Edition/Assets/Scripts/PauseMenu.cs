@@ -14,7 +14,10 @@ public class PauseMenu : MonoBehaviour
         {
             if (GameIsPaused)
             {
-                Resume();
+                if (!PopUp.popUpIsOpened)
+                {
+                    Resume();
+                }
             }
             else
             {
