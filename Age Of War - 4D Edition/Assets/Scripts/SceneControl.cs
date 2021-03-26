@@ -6,7 +6,10 @@ public class SceneControl : MonoBehaviour
     void Update() { 
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene("Start Menu");
+            if (!SceneManager.GetActiveScene().name.Equals("Game"))
+            {
+                SceneManager.LoadScene("Start Menu");
+            }
         }
     }
 
