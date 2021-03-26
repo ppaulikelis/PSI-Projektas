@@ -17,11 +17,7 @@ public class Base : MonoBehaviour
 
     private void Update()
     {
-        //for testing
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TakeDamage(20);
-        }
+
     }
 
     private void TakeDamage(int damage)
