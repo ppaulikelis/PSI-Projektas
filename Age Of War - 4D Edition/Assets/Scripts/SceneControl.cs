@@ -13,7 +13,7 @@ public class SceneControl : MonoBehaviour
         }
     }
 
-    public void LoadScene(string scene)
+    public static void LoadScene(string scene)
     {
         SceneManager.LoadScene(scene);
     }
