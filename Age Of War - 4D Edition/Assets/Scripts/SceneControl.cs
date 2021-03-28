@@ -6,14 +6,14 @@ public class SceneControl : MonoBehaviour
     void Update() { 
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!SceneManager.GetActiveScene().name.Equals("Game"))
+            if (!SceneManager.GetActiveScene().name.Equals("Game") && !SceneManager.GetActiveScene().name.Equals("Winner") && !SceneManager.GetActiveScene().name.Equals("Loser"))
             {
                 SceneManager.LoadScene("Start Menu");
             }
         }
     }
 
-    public void LoadScene(string scene)
+    public static void LoadScene(string scene)
     {
         SceneManager.LoadScene(scene);
     }
