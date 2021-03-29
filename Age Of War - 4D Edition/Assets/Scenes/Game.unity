@@ -229,6 +229,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2082455819037886842, guid: e1986e648a78aa848846ead63b944d36, type: 3}
   m_PrefabInstance: {fileID: 2082455818224727748}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &925462143 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 925462143, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
+  m_PrefabInstance: {fileID: 6882332758127446487}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dfcfaef690b5da4c9c9449b535143cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &967803387 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2082455818640773062, guid: e1986e648a78aa848846ead63b944d36, type: 3}
+  m_PrefabInstance: {fileID: 2082455818224727748}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1220093986 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5065363750841252142, guid: e1986e648a78aa848846ead63b944d36, type: 3}
@@ -346,14 +368,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 387738430}
     m_Modifications:
-    - target: {fileID: 2082455818170029378, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_Name
-      value: Unit Control
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455818217197160, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_Name
-      value: Sell Turret Button
-      objectReference: {fileID: 0}
+    - target: {fileID: 487917911, guid: e1986e648a78aa848846ead63b944d36, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 387738431}
     - target: {fileID: 2082455818263358906, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -362,54 +380,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2082455818640773060, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_Name
-      value: Special Attack Button
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455818780224066, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_Name
-      value: Create U2 Button
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455818780224076, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455818780224076, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
+    - target: {fileID: 2082455818640773062, guid: e1986e648a78aa848846ead63b944d36, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 925462143}
     - target: {fileID: 2082455818780224076, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 134360229}
-    - target: {fileID: 2082455818780224076, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455818780224076, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GenerateUnit
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455818780224076, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnitSpawner, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455818780224076, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 11400000, guid: cf763621fcaf09f498f48ac8ab74145d, type: 2}
-    - target: {fileID: 2082455818780224076, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: Unit, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455818876034485, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_Name
-      value: Turret Control
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455818945877899, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: orthographic size
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 2082455819037886841, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_Name
       value: UI
@@ -458,78 +436,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2082455819040539410, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_Name
-      value: Special Control
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455819043477403, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_Name
-      value: Build T3 Button
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455819086741112, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_Name
-      value: Tower Control
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455819249808859, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_Name
-      value: Create U3 Button
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455819249808869, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455819249808869, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 2082455819249808869, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 134360229}
-    - target: {fileID: 2082455819249808869, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455819249808869, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GenerateUnit
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455819249808869, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnitSpawner, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455819249808869, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 11400000, guid: e2d01feddacdbc746bb874f8b860b91e, type: 2}
-    - target: {fileID: 2082455819249808869, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: Unit, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455819515209696, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_Name
-      value: Evolve Button
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455819693079515, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_Name
-      value: Build Tower Button
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455819755987077, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_Text
-      value: Units
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455819818931749, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_Name
-      value: Top Panel
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455819896385383, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_Name
-      value: Build T2 Button
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455820026460763, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -485
-      objectReference: {fileID: 0}
     - target: {fileID: 2082455820046023005, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -538,46 +448,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2082455820076629397, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_Name
-      value: Build T1 Button
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455820163255441, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455820163255441, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 2082455820163255441, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 134360229}
-    - target: {fileID: 2082455820163255441, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455820163255441, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GenerateUnit
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455820163255441, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnitSpawner, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455820163255441, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 11400000, guid: 05c8f4494f80f724f9c552ce479c4844, type: 2}
-    - target: {fileID: 2082455820163255441, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: Unit, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2082455820163255447, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_Name
-      value: Create U1 Button
-      objectReference: {fileID: 0}
     - target: {fileID: 6788979025786455990, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -594,26 +468,6 @@ PrefabInstance:
     - target: {fileID: 889266859360670552, guid: 0dcef4106c8a93440b73933d03bf3e8a, type: 3}
       propertyPath: m_Name
       value: Cameras
-      objectReference: {fileID: 0}
-    - target: {fileID: 2347230082883789942, guid: 0dcef4106c8a93440b73933d03bf3e8a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2347230082883789943, guid: 0dcef4106c8a93440b73933d03bf3e8a, type: 3}
-      propertyPath: xLimit
-      value: 27
-      objectReference: {fileID: 0}
-    - target: {fileID: 2347230082883789943, guid: 0dcef4106c8a93440b73933d03bf3e8a, type: 3}
-      propertyPath: panSpeed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2347230082883789943, guid: 0dcef4106c8a93440b73933d03bf3e8a, type: 3}
-      propertyPath: panBorderThickness
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2347230082883789945, guid: 0dcef4106c8a93440b73933d03bf3e8a, type: 3}
-      propertyPath: orthographic size
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7104243341707115624, guid: 0dcef4106c8a93440b73933d03bf3e8a, type: 3}
       propertyPath: m_RootOrder
@@ -673,6 +527,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 387738430}
     m_Modifications:
+    - target: {fileID: 925462143, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
+      propertyPath: superAttackButton
+      value: 
+      objectReference: {fileID: 967803387}
     - target: {fileID: 908637439096245110, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -717,58 +575,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5088872416893841098, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5088872416893841098, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -6
-      objectReference: {fileID: 0}
     - target: {fileID: 6882332757607606042, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 277359923}
-    - target: {fileID: 6882332757607606044, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6882332757607606044, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 6882332757607606044, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -13
-      objectReference: {fileID: 0}
-    - target: {fileID: 6882332757607606044, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -4
-      objectReference: {fileID: 0}
     - target: {fileID: 6882332757689740563, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 90315788}
-    - target: {fileID: 6882332757689740564, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6882332757689740564, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 6882332757689740564, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 6882332757689740564, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6882332757689740565, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
-      propertyPath: m_Name
-      value: Enemy Base
-      objectReference: {fileID: 0}
     - target: {fileID: 7498015273748859907, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: slider
       value: 

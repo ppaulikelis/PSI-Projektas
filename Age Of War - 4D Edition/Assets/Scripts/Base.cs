@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Base : MonoBehaviour
 {
+    public bool isPlayer;
     public int maxHealth = 100;
     public int currentHealth;
 
@@ -17,10 +17,23 @@ public class Base : MonoBehaviour
 
     private void Update()
     {
-        //for testing
-        if (Input.GetKeyDown(KeyCode.Space))
+        //FOR TESTING
+        //if (Input.GetKeyDown(KeyCode.LeftArrow) && isPlayer)
+        //{
+        //    TakeDamage(20);
+        //}
+        //else if(Input.GetKeyDown(KeyCode.RightArrow) && !isPlayer)
+        //{
+        //    TakeDamage(20);
+        //}
+
+        if (isPlayer && currentHealth <= 0)
         {
-            TakeDamage(20);
+            SceneControl.LoadScene("Loser");
+        }
+        else if(!isPlayer && currentHealth <= 0)
+        {
+            SceneControl.LoadScene("Winner");
         }
     }
 
