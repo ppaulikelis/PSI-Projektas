@@ -16,6 +16,7 @@ public class UnitHealthBar : MonoBehaviour
     {
         background.transform.localPosition = offset;
         fillRenderer = fill.GetComponent<SpriteRenderer>();
+        fillRenderer.color = high;
         fill.transform.localPosition = new Vector2(0.5f, 0);
         fill.transform.localScale = new Vector2(1, 1);
     }

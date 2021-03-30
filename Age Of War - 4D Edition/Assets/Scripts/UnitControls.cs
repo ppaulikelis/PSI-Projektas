@@ -10,11 +10,11 @@ public class UnitControls : MonoBehaviour
 
     private int health;
     private int damage;
-
     private int movementSpeed;
     private int trainingTime;
-
     private int cost;
+
+    private SpriteRenderer[] barRenderers;
 
     private void Start()
     {
@@ -27,21 +27,46 @@ public class UnitControls : MonoBehaviour
         GameObject temp = (GameObject)Instantiate(Resources.Load("Bar"));
         healthBar = temp.GetComponent<UnitHealthBar>();
         temp.transform.SetParent(gameObject.transform);
+
+        barRenderers = temp.transform.GetComponentsInChildren<SpriteRenderer>();
+        foreach (SpriteRenderer rend in barRenderers)
+        {
+            rend.enabled = false;
+        }
     }
 
     void Update()  
     {
+        // movement
         gameObject.transform.position += Vector3.right * unitData.movementSpeed * Time.deltaTime;
 
+        // temp code for testing
         if (Input.GetKeyDown(KeyCode.W))
         {
             health--;
             healthBar.SetHealth(health, unitData.health);
         }
 
+        // death
         if(health <= 0)
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void OnMouseEnter()
+    {
+        foreach(SpriteRenderer rend in barRenderers)
+        {
+            rend.enabled = true;
+        }
+    }
+
+    private void OnMouseExit()
+    {
+        foreach (SpriteRenderer rend in barRenderers)
+        {
+            rend.enabled = false;
         }
     }
 }
