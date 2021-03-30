@@ -8,11 +8,13 @@ public class UnitControls : MonoBehaviour
     public Unit unitData;
     public UnitHealthBar healthBar;
 
-    public bool isMoving;
+    public bool isEnemy;
+    public bool isMoving = true;
+    public bool canAttack = true;
 
     private int health;
     private int damage;
-    private int movementSpeed;
+    public int movementSpeed;
     private int trainingTime;
     private int cost;
 
@@ -23,11 +25,16 @@ public class UnitControls : MonoBehaviour
     {
         health = unitData.health;
         damage = unitData.damage;
-        movementSpeed = unitData.movementSpeed;
+        if (isEnemy)
+        {
+            movementSpeed = unitData.movementSpeed * -1;
+        } 
+        else
+        {
+            movementSpeed = unitData.movementSpeed;
+        }     
         trainingTime = unitData.trainingTime;
         cost = unitData.cost;
-
-        isMoving = true;
 
         GameObject temp = (GameObject)Instantiate(Resources.Load("Bar"));
         healthBar = temp.GetComponent<UnitHealthBar>();
@@ -42,19 +49,21 @@ public class UnitControls : MonoBehaviour
         }
     }
 
-    void Update()  
+    private void FixedUpdate()
     {
         // movement
-        if(isMoving)
+        if (isMoving)
         {
-            rigid.velocity = Vector2.right * unitData.movementSpeed * Time.deltaTime * 500;
+            rigid.velocity = new Vector2(movementSpeed * Time.deltaTime * 50, 0);
         }
         else
         {
             rigid.velocity = Vector2.zero;
         }
-       
+    }
 
+    void Update()
+    { 
         // temp code for testing
         if (Input.GetKeyDown(KeyCode.W))
         {
@@ -69,6 +78,12 @@ public class UnitControls : MonoBehaviour
         }
     }
 
+    public void changeHealth(int newHealth)
+    {
+        health = newHealth;
+        healthBar.SetHealth(health, unitData.health);
+    }
+
     IEnumerator StopAndWaitSeconds(float n)
     {
         isMoving = false;
@@ -76,14 +91,43 @@ public class UnitControls : MonoBehaviour
         isMoving = true;
     }
 
+    IEnumerator AttackCooldown(UnitControls enemyScript, float n)
+    {
+        canAttack = false;
+        yield return new WaitForSeconds(n);
+        if (health > 0)
+        {
+            enemyScript.changeHealth(enemyScript.health - damage);
+        }
+        canAttack = true;
+    }
+
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        for (int k = 0; k < collision.contacts.Length; k++)
+        if ((!isEnemy && collision.gameObject.tag == "Enemy") || (isEnemy && collision.gameObject.tag == "Friendly"))
         {
-            if (Vector3.Angle(collision.contacts[k].normal, Vector3.left) <= 1)
+            for (int k = 0; k < collision.contacts.Length; k++)
             {
-                rigid.velocity = Vector2.zero;
-                StartCoroutine(StopAndWaitSeconds(0.5f));
+                if (Vector3.Angle(collision.contacts[k].normal, Vector3.left) <= 1)
+                {
+                    rigid.velocity = Vector2.zero;
+                    StartCoroutine(StopAndWaitSeconds(0.5f));
+                }
+            }
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if((!isEnemy && collision.gameObject.tag == "Enemy") || (isEnemy && collision.gameObject.tag == "Friendly"))
+        {
+            if(collision.gameObject.GetComponent<UnitControls>() != null)
+            {
+                if(canAttack)
+                {
+                    StartCoroutine(AttackCooldown(collision.gameObject.GetComponent<UnitControls>(), 1));
+                }
             }
         }
     }
