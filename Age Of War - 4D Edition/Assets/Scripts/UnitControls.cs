@@ -8,6 +8,8 @@ public class UnitControls : MonoBehaviour
     public Unit unitData;
     public UnitHealthBar healthBar;
 
+    public bool isMoving;
+
     private int health;
     private int damage;
     private int movementSpeed;
@@ -15,6 +17,7 @@ public class UnitControls : MonoBehaviour
     private int cost;
 
     private SpriteRenderer[] barRenderers;
+    private Rigidbody2D rigid;
 
     private void Start()
     {
@@ -24,9 +27,13 @@ public class UnitControls : MonoBehaviour
         trainingTime = unitData.trainingTime;
         cost = unitData.cost;
 
+        isMoving = true;
+
         GameObject temp = (GameObject)Instantiate(Resources.Load("Bar"));
         healthBar = temp.GetComponent<UnitHealthBar>();
         temp.transform.SetParent(gameObject.transform);
+
+        rigid = gameObject.GetComponent<Rigidbody2D>();
 
         barRenderers = temp.transform.GetComponentsInChildren<SpriteRenderer>();
         foreach (SpriteRenderer rend in barRenderers)
@@ -38,7 +45,15 @@ public class UnitControls : MonoBehaviour
     void Update()  
     {
         // movement
-        gameObject.transform.position += Vector3.right * unitData.movementSpeed * Time.deltaTime;
+        if(isMoving)
+        {
+            rigid.velocity = Vector2.right * unitData.movementSpeed * Time.deltaTime * 500;
+        }
+        else
+        {
+            rigid.velocity = Vector2.zero;
+        }
+       
 
         // temp code for testing
         if (Input.GetKeyDown(KeyCode.W))
@@ -51,6 +66,25 @@ public class UnitControls : MonoBehaviour
         if(health <= 0)
         {
             Destroy(gameObject);
+        }
+    }
+
+    IEnumerator StopAndWaitSeconds(float n)
+    {
+        isMoving = false;
+        yield return new WaitForSeconds(n);
+        isMoving = true;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        for (int k = 0; k < collision.contacts.Length; k++)
+        {
+            if (Vector3.Angle(collision.contacts[k].normal, Vector3.left) <= 1)
+            {
+                rigid.velocity = Vector2.zero;
+                StartCoroutine(StopAndWaitSeconds(0.5f));
+            }
         }
     }
 
