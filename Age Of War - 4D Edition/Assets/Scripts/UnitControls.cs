@@ -21,6 +21,7 @@ public class UnitControls : MonoBehaviour
     private SpriteRenderer[] barRenderers;
     private Rigidbody2D rigid;
     private UnitControls enemyScript;
+    private GameObject enemyBase;
 
     private void Start()
     {
@@ -78,10 +79,18 @@ public class UnitControls : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if(!isAttacking && enemyScript != null)
+        if(!isAttacking)
         {
-            StartCoroutine(ApplyDamage(enemyScript, 1));
+            if(enemyScript != null)
+            {
+                StartCoroutine(ApplyDamage(enemyScript, 1));
+            }
+            else if(enemyBase != null)
+            {
+                StartCoroutine(ApplyDamage(enemyBase, 1));
+            }
         }
+        
     }
 
     public void changeHealth(int newHealth)
@@ -97,6 +106,22 @@ public class UnitControls : MonoBehaviour
         while(enemy != null && gameObject != null)
         {
             enemy.changeHealth(enemy.health - damage);
+            yield return new WaitForSeconds(cooldown);
+        }
+        isMoving = true;
+        isAttacking = false;
+        yield return null;
+    }
+
+    IEnumerator ApplyDamage(GameObject enemyBase, float cooldown)
+    {
+        isMoving = false;
+        isAttacking = true;
+        while (enemyBase != null && gameObject != null)
+        {
+            Base baseScript = enemyBase.GetComponent<Base>();
+            baseScript.currentHealth -= damage;
+            baseScript.healthBar.SetHealth(baseScript.currentHealth);
             yield return new WaitForSeconds(cooldown);
         }
         isMoving = true;
@@ -124,6 +149,12 @@ public class UnitControls : MonoBehaviour
         {
             enemyScript = collision.gameObject.GetComponent<UnitControls>();
         }
+
+        if ((!isEnemy && collision.gameObject.tag == "Enemy Base") || (isEnemy && collision.gameObject.tag == "Player Base"))
+        {
+            enemyBase = collision.gameObject;
+        }
+
     }
 
     private void OnCollisionExit2D(Collision2D collision)

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Friendly
   - Enemy
+  - Player Base
+  - Enemy Base
   layers:
   - Default
   - TransparentFX
