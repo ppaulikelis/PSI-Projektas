@@ -10,7 +10,7 @@ public class UnitControls : MonoBehaviour
 
     public bool isEnemy;
     public bool isMoving = true;
-    public bool canAttack = true;
+    public bool isAttacking;
 
     private int health;
     private int damage;
@@ -20,6 +20,7 @@ public class UnitControls : MonoBehaviour
 
     private SpriteRenderer[] barRenderers;
     private Rigidbody2D rigid;
+    private UnitControls enemyScript;
 
     private void Start()
     {
@@ -76,12 +77,31 @@ public class UnitControls : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if(!isAttacking && enemyScript != null)
+        {
+            StartCoroutine(ApplyDamage(enemyScript, 1));
+        }
     }
 
     public void changeHealth(int newHealth)
     {
         health = newHealth;
         healthBar.SetHealth(health, unitData.health);
+    }
+
+    IEnumerator ApplyDamage(UnitControls enemy, float cooldown)
+    {
+        isMoving = false;
+        isAttacking = true;
+        while(enemy != null && gameObject != null)
+        {
+            enemy.changeHealth(enemy.health - damage);
+            yield return new WaitForSeconds(cooldown);
+        }
+        isMoving = true;
+        isAttacking = false;
+        yield return null;
     }
 
     IEnumerator StopAndWaitSeconds(float n)
@@ -91,44 +111,27 @@ public class UnitControls : MonoBehaviour
         isMoving = true;
     }
 
-    IEnumerator AttackCooldown(UnitControls enemyScript, float n)
-    {
-        canAttack = false;
-        yield return new WaitForSeconds(n);
-        if (health > 0)
-        {
-            enemyScript.changeHealth(enemyScript.health - damage);
-        }
-        canAttack = true;
-    }
-
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Vector3 dir = (collision.gameObject.transform.position - gameObject.transform.position).normalized;
+        if((dir.x > 0 && collision.gameObject.tag == "Friendly") || (dir.x < 0 && collision.gameObject.tag == "Enemy"))
+        {
+            isMoving = false;
+        }
+
         if ((!isEnemy && collision.gameObject.tag == "Enemy") || (isEnemy && collision.gameObject.tag == "Friendly"))
         {
-            for (int k = 0; k < collision.contacts.Length; k++)
-            {
-                if (Vector3.Angle(collision.contacts[k].normal, Vector3.left) <= 1)
-                {
-                    rigid.velocity = Vector2.zero;
-                    StartCoroutine(StopAndWaitSeconds(0.5f));
-                }
-            }
+            enemyScript = collision.gameObject.GetComponent<UnitControls>();
         }
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionExit2D(Collision2D collision)
     {
-        if((!isEnemy && collision.gameObject.tag == "Enemy") || (isEnemy && collision.gameObject.tag == "Friendly"))
+        Vector3 dir = (collision.gameObject.transform.position - gameObject.transform.position).normalized;
+        if ((dir.x > 0 && collision.gameObject.tag == "Friendly") || (dir.x < 0 && collision.gameObject.tag == "Enemy"))
         {
-            if(collision.gameObject.GetComponent<UnitControls>() != null)
-            {
-                if(canAttack)
-                {
-                    StartCoroutine(AttackCooldown(collision.gameObject.GetComponent<UnitControls>(), 1));
-                }
-            }
+            StartCoroutine(StopAndWaitSeconds(0.5f));
         }
     }
 
