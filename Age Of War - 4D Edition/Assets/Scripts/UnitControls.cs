@@ -24,9 +24,9 @@ public class UnitControls : MonoBehaviour
         trainingTime = unitData.trainingTime;
         cost = unitData.cost;
 
-        healthBar = Resources.Load("Bar", typeof(UnitHealthBar)) as UnitHealthBar;
-        var temp = Instantiate(healthBar);
-        temp.transform.parent = gameObject.transform;
+        GameObject temp = (GameObject)Instantiate(Resources.Load("Bar"));
+        healthBar = temp.GetComponent<UnitHealthBar>();
+        temp.transform.SetParent(gameObject.transform);
     }
 
     void Update()  
@@ -39,7 +39,7 @@ public class UnitControls : MonoBehaviour
             healthBar.SetHealth(health, unitData.health);
         }
 
-        if(health <=0)
+        if(health <= 0)
         {
             Destroy(gameObject);
         }
