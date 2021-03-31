@@ -23,12 +23,9 @@ public class UnitHealthBar : MonoBehaviour
 
     public void SetHealth(float health, float maxHealth)
     {
-        if(gameObject != null)
-        {
-            float normalized = health / maxHealth;
-            fill.transform.localPosition = new Vector2(normalized / 2, 0);
-            fill.transform.localScale = new Vector2(normalized, 1);
-            fillRenderer.color = Color.Lerp(low, high, normalized);
-        }  
+        float normalized = health / maxHealth;
+        fill.transform.localPosition = new Vector2(normalized / 2, 0);
+        fill.transform.localScale = new Vector2(normalized, 1);
+        fillRenderer.color = Color.Lerp(low, high, normalized); 
     }
 }
