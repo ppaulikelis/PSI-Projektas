@@ -47,14 +47,19 @@ public class UnitSpawner : MonoBehaviour
 
             if (cooldown <= 0)  // if training is over: create new GameObject, set its data and sprite, remove unit from queue, reset slider and UI "box" value, end training
             {
-                GameObject newObject = new GameObject("Unit", typeof(UnitControls), typeof(SpriteRenderer));
+                GameObject newObject = new GameObject("Unit", typeof(UnitControls), typeof(SpriteRenderer), typeof(BoxCollider2D), typeof(Rigidbody2D));
                 newObject.transform.position = transform.position;
 
+                newObject.gameObject.tag = "Friendly";
+                Rigidbody2D rb = newObject.GetComponent<Rigidbody2D>();
+                rb.gravityScale = 0;
+                rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+                rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+                newObject.GetComponent<BoxCollider2D>().size = new Vector2(1, 1);
                 newObject.GetComponent<UnitControls>().unitData = currentUnit;
                 newObject.GetComponent<SpriteRenderer>().sprite = currentUnit.artwork;
 
                 unitsQueue.Dequeue();
-
 
                 toggles[0].isOn = false;
                 slider.value = 0;
@@ -71,19 +76,3 @@ public class UnitSpawner : MonoBehaviour
         }
     }
 }
-
-public class UnitControls : MonoBehaviour
-{
-    public Unit unitData;
-
-    void Update()   // temporary code to test movement
-    {
-        gameObject.transform.position += Vector3.right * unitData.movementSpeed * Time.deltaTime;
-
-        if(gameObject.transform.position.x >= 25)
-        {
-            Destroy(gameObject);
-        }
-    }
-}
-

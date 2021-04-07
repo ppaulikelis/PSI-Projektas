@@ -13,6 +13,14 @@ public class Base : MonoBehaviour
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        if(isPlayer)
+        {
+            gameObject.tag = "Player Base";
+        }
+        else
+        {
+            gameObject.tag = "Enemy Base";
+        }
     }
 
     private void Update()
@@ -37,7 +45,7 @@ public class Base : MonoBehaviour
         }
     }
 
-    private void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
