@@ -130,7 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panSpeed: 20
   panBorderThickness: 100
-  xLimit: 29.5
+  xLimit: 29
 --- !u!1 &2347230083097665070
 GameObject:
   m_ObjectHideFlags: 0
