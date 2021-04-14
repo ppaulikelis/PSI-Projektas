@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 253f00a7d1371f243be586f20d0a3695, type: 3}
   m_Name: Unit1
   m_EditorClassIdentifier: 
-  artwork: {fileID: -9095717837082945937, guid: 34587324d412940a79d530020c957dc0, type: 3}
+  artwork: {fileID: 21300000, guid: 21883fb46f5ffeb4da9da6dbbfd2a03e, type: 3}
   health: 5
   damage: 2
   hitboxIncrease: 0.5
