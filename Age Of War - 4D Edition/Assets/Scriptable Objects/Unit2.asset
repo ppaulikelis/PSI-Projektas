@@ -15,7 +15,7 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: bdba9512dd04f774f8f7f068a72e881f, type: 3}
   health: 3
   damage: 3
-  hitboxIncrease: 0.5
+  hitboxIncrease: 0
   movementSpeed: 4
   trainingTime: 3
   cost: 0
