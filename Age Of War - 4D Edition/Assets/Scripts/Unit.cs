@@ -7,6 +7,7 @@ public class Unit : ScriptableObject
 {
     public Sprite artwork;
 
+    public bool isRanged;
     public int health;
     public int damage;
     public float hitboxIncrease;

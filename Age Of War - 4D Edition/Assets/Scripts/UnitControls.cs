@@ -8,11 +8,12 @@ public class UnitControls : MonoBehaviour
     public Unit unitData;
     public UnitHealthBar healthBar;
 
-    public bool isEnemy;
-    public int isEnemyInt;
+    public bool isEnemy = false;
+    private int isEnemyInt;
     public bool isMoving = true;
-    public bool isAttacking;
+    public bool isAttacking = false;
 
+    private bool isRanged;
     private int health;
     private int damage;
     private float hitboxIncrease;
@@ -21,18 +22,18 @@ public class UnitControls : MonoBehaviour
     private int cost;
 
     private SpriteRenderer[] barRenderers;
-    private Rigidbody2D rigid;
-    private UnitControls enemyScript;
-    private GameObject enemyBase;
+
+    //private bool DEBUG;
 
     private void Start()
     {
         // setting variables from Unit scriptable object
+        isRanged = unitData.isRanged;
         health = unitData.health;
         damage = unitData.damage;
         hitboxIncrease = unitData.hitboxIncrease;
-        trainingTime = unitData.trainingTime;
         movementSpeed = unitData.movementSpeed;
+        trainingTime = unitData.trainingTime;
         cost = unitData.cost;
         if (isEnemy)
         {
@@ -45,6 +46,8 @@ public class UnitControls : MonoBehaviour
             gameObject.tag = "Friendly";
         }
 
+        GetComponent<BoxCollider2D>().size = new Vector3(1 + hitboxIncrease, 1 + hitboxIncrease, 1);
+
         // adding health bar on top of unit from Resources\Bar
         GameObject temp = (GameObject)Instantiate(Resources.Load("Bar"));
         healthBar = temp.GetComponent<UnitHealthBar>();
@@ -54,6 +57,12 @@ public class UnitControls : MonoBehaviour
         {
             rend.enabled = false;
         }
+
+        /*var vision = new GameObject("debug", typeof(SpriteRenderer));
+        vision.GetComponent<SpriteRenderer>().sprite = UnityEditor.AssetDatabase.GetBuiltinExtraResource<Sprite>("UI/Skin/UISprite.psd");
+        vision.transform.SetParent(gameObject.transform);
+        vision.transform.localPosition = new Vector2( ((1.01f + hitboxIncrease) / 2 + 5f) * isEnemyInt, 0);
+        DEBUG = true;*/
     }
 
     void Update()
@@ -64,68 +73,88 @@ public class UnitControls : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (!isAttacking)
-        {
-            if (enemyScript != null)
-            {
-                StartCoroutine(ApplyDamage(enemyScript, 1));
-            }
-            else if (enemyBase != null)
-            {
-                StartCoroutine(ApplyDamage(enemyBase, 1));
-            }
-        }
-
-
+        // movement
         if (isMoving)
         {
             transform.Translate(Vector2.right * Time.deltaTime * movementSpeed * isEnemyInt);
         }
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0.51f * isEnemyInt,0,0), Vector2.right*isEnemyInt, 0.5f);
+        RaycastHit2D closeHit = Physics2D.Raycast(transform.position + new Vector3( (1.01f + hitboxIncrease) / 2 * isEnemyInt, 0, 0), Vector2.right * isEnemyInt, 0.01f);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position + new Vector3((1.01f + hitboxIncrease) / 2 * isEnemyInt, 0, 0), Vector2.right * isEnemyInt, 5f);
 
-        if(hit)
+        if (closeHit)
         {
-            if(hit.collider.tag == "Friendly" && !isEnemy || hit.collider.tag == "Enemy" && isEnemy)
+            if (HasHitFriendly(closeHit.collider.tag))
             {
                 isMoving = false;
-                //StartCoroutine(WaitBeforeMoving(0.5f));
             }
-
-            if(hit.collider.tag == "Enemy" && !isEnemy || hit.collider.tag == "Friendly" && isEnemy)
+            else if (!isAttacking)
+            {
+                if (HasHitEnemy(closeHit.collider.tag))
+                {
+                    StartCoroutine(ApplyDamage(closeHit.collider.GetComponent<UnitControls>(), 1f, false));
+                }
+                else if (HasHitEnemyBase(closeHit.collider.tag))
+                {
+                    StartCoroutine(ApplyDamage(closeHit.collider.gameObject, 1f, false));
+                }
+            }
+            else
             {
                 isMoving = false;
-                enemyScript = hit.collider.gameObject.GetComponent<UnitControls>();
             }
-
-            if(hit.collider.tag == "Enemy Base" && !isEnemy || hit.collider.tag == "Player Base" && isEnemy)
-            {
-                isMoving = false;
-                enemyBase = hit.collider.gameObject;
-            }
-        } 
+        }
         else
         {
             isMoving = true;
         }
+
+        if (isRanged && hits.Length > 0)
+        {
+            foreach (var currentHit in hits)
+            {
+                if (!isAttacking)
+                {
+                    if (HasHitEnemy(currentHit.collider.tag))
+                    {
+                        StartCoroutine(ApplyDamage(currentHit.collider.GetComponent<UnitControls>(), 1f, true));
+                    }
+                    else if (HasHitEnemyBase(currentHit.collider.tag))
+                    {
+                        StartCoroutine(ApplyDamage(currentHit.collider.gameObject, 1f, true));
+                    }
+                    break;
+                }
+            }
+        }
     }
 
-    public void ChangeHealth(int newHealth)
+    private bool HasHitFriendly(string tag)
     {
-        health = newHealth;
-        healthBar.SetHealth(health, unitData.health);
+        return tag.Equals("Friendly") && !isEnemy || tag.Equals("Enemy") && isEnemy;
     }
 
-    IEnumerator ApplyDamage(UnitControls enemy, float cooldown)
+    private bool HasHitEnemy(string tag)
     {
-        isMoving = false;
+        return tag.Equals("Enemy") && !isEnemy || tag.Equals("Friendly") && isEnemy;
+    }
+
+    private bool HasHitEnemyBase(string tag)
+    {
+        return tag.Equals("Enemy Base") && !isEnemy || tag.Equals("Player Base") && isEnemy;
+    }
+
+    IEnumerator ApplyDamage(UnitControls enemy, float cooldown, bool isRanged)
+    {
+        isMoving = isRanged;
         isAttacking = true;
         while (enemy != null)
         {
             yield return new WaitForSeconds(cooldown);
             if (gameObject != null && enemy != null)
             {
-                enemy.ChangeHealth(enemy.health - damage);
+                enemy.health -= damage;
+                enemy.healthBar.SetHealth(enemy.health, enemy.unitData.health);
             }
 
         }
@@ -134,11 +163,11 @@ public class UnitControls : MonoBehaviour
         yield return null;
     }
 
-    IEnumerator ApplyDamage(GameObject enemyBase, float cooldown)
+    IEnumerator ApplyDamage(GameObject enemyBase, float cooldown, bool isRanged)
     {
-        isMoving = false;
+        isMoving = isRanged;
         isAttacking = true;
-        while (enemyBase != null && gameObject != null)
+        while (gameObject != null && enemyBase != null)
         {
             yield return new WaitForSeconds(cooldown);
             Base baseScript = enemyBase.GetComponent<Base>();
@@ -148,13 +177,6 @@ public class UnitControls : MonoBehaviour
         isAttacking = false;
         yield return null;
     }
-
-    /*IEnumerator WaitBeforeMoving(float seconds)
-    {
-        isMoving = false;
-        yield return new WaitForSeconds(seconds);
-        isMoving = true;
-    }*/
 
     // OnMouse enables/disables healthbars on units when mouse is moved on top 
     private void OnMouseEnter()
