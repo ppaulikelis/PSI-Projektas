@@ -9,6 +9,7 @@ public class UnitControls : MonoBehaviour
     public UnitHealthBar healthBar;
 
     public bool isEnemy;
+    public int isEnemyInt;
     public bool isMoving = true;
     public bool isAttacking;
 
@@ -30,16 +31,19 @@ public class UnitControls : MonoBehaviour
         health = unitData.health;
         damage = unitData.damage;
         hitboxIncrease = unitData.hitboxIncrease;
+        trainingTime = unitData.trainingTime;
+        movementSpeed = unitData.movementSpeed;
+        cost = unitData.cost;
         if (isEnemy)
         {
-            movementSpeed = unitData.movementSpeed * -1;
-        } 
+            isEnemyInt = -1;
+            gameObject.tag = "Enemy";
+        }
         else
         {
-            movementSpeed = unitData.movementSpeed;
-        }     
-        trainingTime = unitData.trainingTime;
-        cost = unitData.cost;
+            isEnemyInt = 1;
+            gameObject.tag = "Friendly";
+        }
 
         // adding health bar on top of unit from Resources\Bar
         GameObject temp = (GameObject)Instantiate(Resources.Load("Bar"));
@@ -50,76 +54,76 @@ public class UnitControls : MonoBehaviour
         {
             rend.enabled = false;
         }
-
-        // setting RigidBody2D as variable as it will be needed in a lot of parts of code
-        rigid = gameObject.GetComponent<Rigidbody2D>();
-
-        // set BoxCollider size
-        gameObject.GetComponent<BoxCollider2D>().size = new Vector2(1 + hitboxIncrease, 1 + hitboxIncrease);
-
-        // add coresponding tags
-        if(isEnemy)
-        {
-            gameObject.tag = "Enemy";
-        }
-        else
-        {
-            gameObject.tag = "Friendly";
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        // movement
-        if (isMoving)
-        {
-            rigid.velocity = new Vector2(movementSpeed * Time.deltaTime * 50, 0);
-        }
-        else
-        {
-            rigid.velocity = Vector2.zero;
-        }
     }
 
     void Update()
-    { 
+    {
         // death
-        if(health <= 0)
+        if (health <= 0)
         {
             Destroy(gameObject);
         }
 
-        // attacking (only works if enemyScript or enemyBase is set after collision)
-        if(!isAttacking)
+        if (!isAttacking)
         {
-            if(enemyScript != null)
+            if (enemyScript != null)
             {
                 StartCoroutine(ApplyDamage(enemyScript, 1));
             }
-            else if(enemyBase != null)
+            else if (enemyBase != null)
             {
                 StartCoroutine(ApplyDamage(enemyBase, 1));
             }
         }
-        
+
+
+        if (isMoving)
+        {
+            transform.Translate(Vector2.right * Time.deltaTime * movementSpeed * isEnemyInt);
+        }
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0.51f * isEnemyInt,0,0), Vector2.right*isEnemyInt, 0.5f);
+
+        if(hit)
+        {
+            if(hit.collider.tag == "Friendly" && !isEnemy || hit.collider.tag == "Enemy" && isEnemy)
+            {
+                isMoving = false;
+                //StartCoroutine(WaitBeforeMoving(0.5f));
+            }
+
+            if(hit.collider.tag == "Enemy" && !isEnemy || hit.collider.tag == "Friendly" && isEnemy)
+            {
+                isMoving = false;
+                enemyScript = hit.collider.gameObject.GetComponent<UnitControls>();
+            }
+
+            if(hit.collider.tag == "Enemy Base" && !isEnemy || hit.collider.tag == "Player Base" && isEnemy)
+            {
+                isMoving = false;
+                enemyBase = hit.collider.gameObject;
+            }
+        } 
+        else
+        {
+            isMoving = true;
+        }
     }
 
-    // changes unit health and modifies health bar
     public void ChangeHealth(int newHealth)
     {
         health = newHealth;
         healthBar.SetHealth(health, unitData.health);
     }
 
-    // IEnumerators to apply cooldown between attacks (waits first) and movement
     IEnumerator ApplyDamage(UnitControls enemy, float cooldown)
     {
         isMoving = false;
         isAttacking = true;
-        while(enemy != null)
+        while (enemy != null)
         {
             yield return new WaitForSeconds(cooldown);
-            if (gameObject != null && enemy != null) 
+            if (gameObject != null && enemy != null)
             {
                 enemy.ChangeHealth(enemy.health - damage);
             }
@@ -145,43 +149,13 @@ public class UnitControls : MonoBehaviour
         yield return null;
     }
 
-    IEnumerator StopAndWaitSeconds(float n)
+    /*IEnumerator WaitBeforeMoving(float seconds)
     {
         isMoving = false;
-        yield return new WaitForSeconds(n);
+        yield return new WaitForSeconds(seconds);
         isMoving = true;
-    }
+    }*/
 
-    // If collision is detected: a) stop if it was your friendly unit b) stop and fight till death if it was your enemy
-    // Works for both sides (player and computer)
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        float dir = (collision.gameObject.transform.position.x - gameObject.transform.position.x);
-        if((dir > 0 && collision.gameObject.CompareTag("Friendly")) || (dir < 0 && collision.gameObject.CompareTag("Enemy")))
-        {
-            isMoving = false;
-        }
-
-        if ((!isEnemy && collision.gameObject.CompareTag("Enemy")) || (isEnemy && collision.gameObject.CompareTag("Friendly")))
-        {
-            enemyScript = collision.gameObject.GetComponent<UnitControls>();
-        }
-        if ((!isEnemy && collision.gameObject.CompareTag("Enemy Base")) || (isEnemy && collision.gameObject.CompareTag("Player Base")))
-        {
-            enemyBase = collision.gameObject;
-        }
-    }
-
-    // If collision is left: a) if collision was with a friendly unit wait certain ammount of time
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        float dir = (collision.gameObject.transform.position.x - gameObject.transform.position.x);
-        if ((dir > 0 && collision.gameObject.CompareTag("Friendly")) || (dir < 0 && collision.gameObject.CompareTag("Enemy")))
-        {
-            StartCoroutine(StopAndWaitSeconds(0.5f));
-        }
-    }
-    
     // OnMouse enables/disables healthbars on units when mouse is moved on top 
     private void OnMouseEnter()
     {
