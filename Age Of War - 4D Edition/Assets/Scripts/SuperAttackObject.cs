@@ -7,17 +7,29 @@ public class SuperAttackObject : MonoBehaviour
     public float speed = 7.0f;
     private Rigidbody2D rb;
 
-    // Start is called before the first frame update
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(0, -speed);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(transform.position.y < -7.5)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.collider.tag == "Enemy")
+        {
+            UnitControls enemyScript = collision.collider.GetComponent<UnitControls>();
+            enemyScript.TakeDamage(20);
+            Destroy(this.gameObject);
+        }
+        else
         {
             Destroy(this.gameObject);
         }

@@ -78,8 +78,10 @@ public class UnitControls : MonoBehaviour
         }
 
         // combat
-        RaycastHit2D closeHit = Physics2D.Raycast(transform.position + new Vector3( (1.01f + hitboxIncrease) / 2 * isEnemyInt, 0, 0), Vector2.right * isEnemyInt, 0.1f);
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position + new Vector3((1.01f + hitboxIncrease) / 2 * isEnemyInt, 0, 0), Vector2.right * isEnemyInt, 5f);
+        RaycastHit2D closeHit = Physics2D.Raycast(transform.position + new Vector3( (1.01f + hitboxIncrease) / 2 * isEnemyInt, 0, 0),
+            Vector2.right * isEnemyInt, 0.1f);  // hardcoded value 0.1f can be changed to change melee attack range
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position + new Vector3((1.01f + hitboxIncrease) / 2 * isEnemyInt, 0, 0),
+            Vector2.right * isEnemyInt, 5f);    // hardcoded value 5f can be changed to change ranged attack range
         if (closeHit)   // if hit in melee range happened:
         {
             if (HasHitFriendly(closeHit.collider.tag))  // A: if it was a friendly unit, stop movement
@@ -176,6 +178,12 @@ public class UnitControls : MonoBehaviour
         isMoving = true;
         isAttacking = false;
         yield return null;
+    }
+
+    // can be used to take damage from outside sources (super attacks, turrets)
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
     }
 
     // OnMouse enables/disables healthbars on units when mouse is moved on top 
