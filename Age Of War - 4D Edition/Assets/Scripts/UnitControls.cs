@@ -13,6 +13,7 @@ public class UnitControls : MonoBehaviour
     public bool isMoving = true;
     public bool isAttacking = false;
 
+    private Animator animator;
     private bool isRanged;
     private int health;
     private int damage;
@@ -28,6 +29,8 @@ public class UnitControls : MonoBehaviour
     private void Start()
     {
         // setting variables from Unit scriptable object
+        animator = GetComponent<Animator>();
+        animator.runtimeAnimatorController = unitData.animator;
         isRanged = unitData.isRanged;
         health = unitData.health;
         damage = unitData.damage;
@@ -46,6 +49,7 @@ public class UnitControls : MonoBehaviour
             gameObject.tag = "Friendly";
         }
 
+        // increase hitbox size
         GetComponent<BoxCollider2D>().size = new Vector3(1 + hitboxIncrease, 1 + hitboxIncrease, 1);
 
         // adding health bar on top of unit from Resources\Bar
@@ -57,12 +61,6 @@ public class UnitControls : MonoBehaviour
         {
             rend.enabled = false;
         }
-
-        /*var vision = new GameObject("debug", typeof(SpriteRenderer));
-        vision.GetComponent<SpriteRenderer>().sprite = UnityEditor.AssetDatabase.GetBuiltinExtraResource<Sprite>("UI/Skin/UISprite.psd");
-        vision.transform.SetParent(gameObject.transform);
-        vision.transform.localPosition = new Vector2( ((1.01f + hitboxIncrease) / 2 + 5f) * isEnemyInt, 0);
-        DEBUG = true;*/
     }
 
     void Update()
@@ -79,51 +77,52 @@ public class UnitControls : MonoBehaviour
             transform.Translate(Vector2.right * Time.deltaTime * movementSpeed * isEnemyInt);
         }
 
-        RaycastHit2D closeHit = Physics2D.Raycast(transform.position + new Vector3( (1.01f + hitboxIncrease) / 2 * isEnemyInt, 0, 0), Vector2.right * isEnemyInt, 0.01f);
+        // combat
+        RaycastHit2D closeHit = Physics2D.Raycast(transform.position + new Vector3( (1.01f + hitboxIncrease) / 2 * isEnemyInt, 0, 0), Vector2.right * isEnemyInt, 0.1f);
         RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position + new Vector3((1.01f + hitboxIncrease) / 2 * isEnemyInt, 0, 0), Vector2.right * isEnemyInt, 5f);
-
-        if (closeHit)
+        if (closeHit)   // if hit in melee range happened:
         {
-            if (HasHitFriendly(closeHit.collider.tag))
+            if (HasHitFriendly(closeHit.collider.tag))  // A: if it was a friendly unit, stop movement
             {
                 isMoving = false;
             }
-            else if (!isAttacking)
+            else if (!isAttacking) // B: else it is some sort of enemy
             {
-                if (HasHitEnemy(closeHit.collider.tag))
+                if (HasHitEnemy(closeHit.collider.tag)) // B1: if it was enemy, hit it
                 {
                     StartCoroutine(ApplyDamage(closeHit.collider.GetComponent<UnitControls>(), 1f, false));
                 }
-                else if (HasHitEnemyBase(closeHit.collider.tag))
+                else if (HasHitEnemyBase(closeHit.collider.tag))    // B2: if it was enemy base, hit it
                 {
                     StartCoroutine(ApplyDamage(closeHit.collider.gameObject, 1f, false));
                 }
             }
-            else
+            else // B edge case: if is attacking already but hit an enemy - stop movement
             {
                 isMoving = false;
             }
         }
-        else
+        else // A2: if it was a friendly unit but it's no longer in range, start movement
         {
             isMoving = true;
         }
 
-        if (isRanged && hits.Length > 0)
+        if (isRanged && hits.Length > 0)    // C: if unit is ranged deal with attacking over long range
         {
-            foreach (var currentHit in hits)
+            foreach (var currentHit in hits)    // run trough all units seen by ray
             {
                 if (!isAttacking)
                 {
-                    if (HasHitEnemy(currentHit.collider.tag))
+                    if (HasHitEnemy(currentHit.collider.tag))   // attack first visible enemy
                     {
                         StartCoroutine(ApplyDamage(currentHit.collider.GetComponent<UnitControls>(), 1f, true));
+                        break;
                     }
-                    else if (HasHitEnemyBase(currentHit.collider.tag))
+                    else if (HasHitEnemyBase(currentHit.collider.tag)) // attack first visible enemy base
                     {
                         StartCoroutine(ApplyDamage(currentHit.collider.gameObject, 1f, true));
+                        break;
                     }
-                    break;
                 }
             }
         }
@@ -144,9 +143,9 @@ public class UnitControls : MonoBehaviour
         return tag.Equals("Enemy Base") && !isEnemy || tag.Equals("Player Base") && isEnemy;
     }
 
-    IEnumerator ApplyDamage(UnitControls enemy, float cooldown, bool isRanged)
+    IEnumerator ApplyDamage(UnitControls enemy, float cooldown, bool shouldMove)
     {
-        isMoving = isRanged;
+        isMoving = shouldMove;
         isAttacking = true;
         while (enemy != null)
         {
@@ -155,17 +154,18 @@ public class UnitControls : MonoBehaviour
             {
                 enemy.health -= damage;
                 enemy.healthBar.SetHealth(enemy.health, enemy.unitData.health);
+                enemy.animator.SetTrigger("Damaged");
             }
-
+    
         }
         isMoving = true;
         isAttacking = false;
         yield return null;
     }
 
-    IEnumerator ApplyDamage(GameObject enemyBase, float cooldown, bool isRanged)
+    IEnumerator ApplyDamage(GameObject enemyBase, float cooldown, bool shouldMove)
     {
-        isMoving = isRanged;
+        isMoving = shouldMove;
         isAttacking = true;
         while (gameObject != null && enemyBase != null)
         {

@@ -6,6 +6,7 @@ using UnityEngine;
 public class Unit : ScriptableObject
 {
     public Sprite artwork;
+    public RuntimeAnimatorController animator;
 
     public bool isRanged;
     public int health;

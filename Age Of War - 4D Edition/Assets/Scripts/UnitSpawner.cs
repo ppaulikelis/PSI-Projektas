@@ -7,12 +7,13 @@ public class UnitSpawner : MonoBehaviour
 {
     Queue<Unit> unitsQueue;
     Unit currentUnit;
+    public bool shouldSpawnEnemy = false;
 
     public Slider slider;
     public Toggle[] toggles;
 
-    bool isTraining = false;
-    float cooldown = 0f;
+    private bool isTraining = false;
+    private float cooldown = 0f;
 
     void Start()
     {
@@ -47,13 +48,18 @@ public class UnitSpawner : MonoBehaviour
 
             if (cooldown <= 0)  // if training is over: create new GameObject, set its data and sprite, remove unit from queue, reset slider and UI "box" value, end training
             {
-                GameObject newObject = new GameObject("Unit", typeof(UnitControls), typeof(SpriteRenderer), typeof(BoxCollider2D));
+                GameObject newObject = new GameObject("Unit", typeof(UnitControls), typeof(SpriteRenderer), typeof(BoxCollider2D), typeof(Animator));
                 newObject.transform.position = transform.position;
 
-                newObject.gameObject.tag = "Friendly";
                 newObject.GetComponent<BoxCollider2D>().size = new Vector2(1, 1);
                 newObject.GetComponent<UnitControls>().unitData = currentUnit;
                 newObject.GetComponent<SpriteRenderer>().sprite = currentUnit.artwork;
+
+                if (shouldSpawnEnemy)
+                {
+                    newObject.transform.localScale = new Vector2(-1, 1);
+                    newObject.GetComponent<UnitControls>().isEnemy = true;
+                }
 
                 unitsQueue.Dequeue();
 
