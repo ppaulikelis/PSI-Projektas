@@ -8,38 +8,49 @@ public class UnitControls : MonoBehaviour
     public Unit unitData;
     public UnitHealthBar healthBar;
 
-    public bool isEnemy;
+    public bool isEnemy = false;
+    private int isEnemyInt;
     public bool isMoving = true;
-    public bool isAttacking;
+    public bool isAttacking = false;
 
+    private Animator animator;
+    private bool isRanged;
     private int health;
     private int damage;
     private float hitboxIncrease;
-    private int movementSpeed;
+    private float movementSpeed;
     private int trainingTime;
     private int cost;
 
     private SpriteRenderer[] barRenderers;
-    private Rigidbody2D rigid;
-    private UnitControls enemyScript;
-    private GameObject enemyBase;
+
+    //private bool DEBUG;
 
     private void Start()
     {
         // setting variables from Unit scriptable object
+        animator = GetComponent<Animator>();
+        animator.runtimeAnimatorController = unitData.animator;
+        isRanged = unitData.isRanged;
         health = unitData.health;
         damage = unitData.damage;
         hitboxIncrease = unitData.hitboxIncrease;
-        if (isEnemy)
-        {
-            movementSpeed = unitData.movementSpeed * -1;
-        } 
-        else
-        {
-            movementSpeed = unitData.movementSpeed;
-        }     
+        movementSpeed = unitData.movementSpeed;
         trainingTime = unitData.trainingTime;
         cost = unitData.cost;
+        if (isEnemy)
+        {
+            isEnemyInt = -1;
+            gameObject.tag = "Enemy";
+        }
+        else
+        {
+            isEnemyInt = 1;
+            gameObject.tag = "Friendly";
+        }
+
+        // increase hitbox size
+        GetComponent<BoxCollider2D>().size = new Vector3(1 + hitboxIncrease, 1 + hitboxIncrease, 1);
 
         // adding health bar on top of unit from Resources\Bar
         GameObject temp = (GameObject)Instantiate(Resources.Load("Bar"));
@@ -50,91 +61,115 @@ public class UnitControls : MonoBehaviour
         {
             rend.enabled = false;
         }
-
-        // setting RigidBody2D as variable as it will be needed in a lot of parts of code
-        rigid = gameObject.GetComponent<Rigidbody2D>();
-
-        // set BoxCollider size
-        gameObject.GetComponent<BoxCollider2D>().size = new Vector2(1 + hitboxIncrease, 1 + hitboxIncrease);
-
-        // add coresponding tags
-        if(isEnemy)
-        {
-            gameObject.tag = "Enemy";
-        }
-        else
-        {
-            gameObject.tag = "Friendly";
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        // movement
-        if (isMoving)
-        {
-            rigid.velocity = new Vector2(movementSpeed * Time.deltaTime * 50, 0);
-        }
-        else
-        {
-            rigid.velocity = Vector2.zero;
-        }
     }
 
     void Update()
-    { 
+    {
         // death
-        if(health <= 0)
+        if (health <= 0)
         {
             Destroy(gameObject);
         }
 
-        // attacking (only works if enemyScript or enemyBase is set after collision)
-        if(!isAttacking)
+        // movement
+        if (isMoving)
         {
-            if(enemyScript != null)
+            transform.Translate(Vector2.right * Time.deltaTime * movementSpeed * isEnemyInt);
+        }
+
+        // combat
+        RaycastHit2D closeHit = Physics2D.Raycast(transform.position + new Vector3( (1.01f + hitboxIncrease) / 2 * isEnemyInt, 0, 0),
+            Vector2.right * isEnemyInt, 0.1f);  // hardcoded value 0.1f can be changed to change melee attack range
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position + new Vector3((1.01f + hitboxIncrease) / 2 * isEnemyInt, 0, 0),
+            Vector2.right * isEnemyInt, 5f);    // hardcoded value 5f can be changed to change ranged attack range
+        if (closeHit)   // if hit in melee range happened:
+        {
+            if (HasHitFriendly(closeHit.collider.tag))  // A: if it was a friendly unit, stop movement
             {
-                StartCoroutine(ApplyDamage(enemyScript, 1));
+                isMoving = false;
             }
-            else if(enemyBase != null)
+            else if (!isAttacking) // B: else it is some sort of enemy
             {
-                StartCoroutine(ApplyDamage(enemyBase, 1));
+                if (HasHitEnemy(closeHit.collider.tag)) // B1: if it was enemy, hit it
+                {
+                    StartCoroutine(ApplyDamage(closeHit.collider.GetComponent<UnitControls>(), 1f, false));
+                }
+                else if (HasHitEnemyBase(closeHit.collider.tag))    // B2: if it was enemy base, hit it
+                {
+                    StartCoroutine(ApplyDamage(closeHit.collider.gameObject, 1f, false));
+                }
+            }
+            else // B edge case: if is attacking already but hit an enemy - stop movement
+            {
+                isMoving = false;
             }
         }
-        
+        else // A2: if it was a friendly unit but it's no longer in range, start movement
+        {
+            isMoving = true;
+        }
+
+        if (isRanged && hits.Length > 0)    // C: if unit is ranged deal with attacking over long range
+        {
+            foreach (var currentHit in hits)    // run trough all units seen by ray
+            {
+                if (!isAttacking)
+                {
+                    if (HasHitEnemy(currentHit.collider.tag))   // attack first visible enemy
+                    {
+                        StartCoroutine(ApplyDamage(currentHit.collider.GetComponent<UnitControls>(), 1f, true));
+                        break;
+                    }
+                    else if (HasHitEnemyBase(currentHit.collider.tag)) // attack first visible enemy base
+                    {
+                        StartCoroutine(ApplyDamage(currentHit.collider.gameObject, 1f, true));
+                        break;
+                    }
+                }
+            }
+        }
     }
 
-    // changes unit health and modifies health bar
-    public void ChangeHealth(int newHealth)
+    private bool HasHitFriendly(string tag)
     {
-        health = newHealth;
-        healthBar.SetHealth(health, unitData.health);
+        return tag.Equals("Friendly") && !isEnemy || tag.Equals("Enemy") && isEnemy;
     }
 
-    // IEnumerators to apply cooldown between attacks (waits first) and movement
-    IEnumerator ApplyDamage(UnitControls enemy, float cooldown)
+    private bool HasHitEnemy(string tag)
     {
-        isMoving = false;
+        return tag.Equals("Enemy") && !isEnemy || tag.Equals("Friendly") && isEnemy;
+    }
+
+    private bool HasHitEnemyBase(string tag)
+    {
+        return tag.Equals("Enemy Base") && !isEnemy || tag.Equals("Player Base") && isEnemy;
+    }
+
+    IEnumerator ApplyDamage(UnitControls enemy, float cooldown, bool shouldMove)
+    {
+        isMoving = shouldMove;
         isAttacking = true;
-        while(enemy != null)
+        while (enemy != null)
         {
             yield return new WaitForSeconds(cooldown);
-            if (gameObject != null && enemy != null) 
+            if (gameObject != null && enemy != null)
             {
-                enemy.ChangeHealth(enemy.health - damage);
+                enemy.health -= damage;
+                enemy.healthBar.SetHealth(enemy.health, enemy.unitData.health);
+                enemy.animator.SetTrigger("Damaged");
             }
-
+    
         }
         isMoving = true;
         isAttacking = false;
         yield return null;
     }
 
-    IEnumerator ApplyDamage(GameObject enemyBase, float cooldown)
+    IEnumerator ApplyDamage(GameObject enemyBase, float cooldown, bool shouldMove)
     {
-        isMoving = false;
+        isMoving = shouldMove;
         isAttacking = true;
-        while (enemyBase != null && gameObject != null)
+        while (gameObject != null && enemyBase != null)
         {
             yield return new WaitForSeconds(cooldown);
             Base baseScript = enemyBase.GetComponent<Base>();
@@ -145,43 +180,12 @@ public class UnitControls : MonoBehaviour
         yield return null;
     }
 
-    IEnumerator StopAndWaitSeconds(float n)
+    // can be used to take damage from outside sources (super attacks, turrets)
+    public void TakeDamage(int damage)
     {
-        isMoving = false;
-        yield return new WaitForSeconds(n);
-        isMoving = true;
+        health -= damage;
     }
 
-    // If collision is detected: a) stop if it was your friendly unit b) stop and fight till death if it was your enemy
-    // Works for both sides (player and computer)
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        float dir = (collision.gameObject.transform.position.x - gameObject.transform.position.x);
-        if((dir > 0 && collision.gameObject.CompareTag("Friendly")) || (dir < 0 && collision.gameObject.CompareTag("Enemy")))
-        {
-            isMoving = false;
-        }
-
-        if ((!isEnemy && collision.gameObject.CompareTag("Enemy")) || (isEnemy && collision.gameObject.CompareTag("Friendly")))
-        {
-            enemyScript = collision.gameObject.GetComponent<UnitControls>();
-        }
-        if ((!isEnemy && collision.gameObject.CompareTag("Enemy Base")) || (isEnemy && collision.gameObject.CompareTag("Player Base")))
-        {
-            enemyBase = collision.gameObject;
-        }
-    }
-
-    // If collision is left: a) if collision was with a friendly unit wait certain ammount of time
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        float dir = (collision.gameObject.transform.position.x - gameObject.transform.position.x);
-        if ((dir > 0 && collision.gameObject.CompareTag("Friendly")) || (dir < 0 && collision.gameObject.CompareTag("Enemy")))
-        {
-            StartCoroutine(StopAndWaitSeconds(0.5f));
-        }
-    }
-    
     // OnMouse enables/disables healthbars on units when mouse is moved on top 
     private void OnMouseEnter()
     {
