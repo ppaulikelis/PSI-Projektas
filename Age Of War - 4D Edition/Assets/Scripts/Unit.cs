@@ -12,7 +12,7 @@ public class Unit : ScriptableObject
     public int health;
     public int damage;
     public float hitboxIncrease;
-    public int movementSpeed;
+    public float movementSpeed;
     public int trainingTime;
     public int cost;
 }

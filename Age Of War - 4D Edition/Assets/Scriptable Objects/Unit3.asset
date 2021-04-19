@@ -18,6 +18,6 @@ MonoBehaviour:
   health: 10
   damage: 4
   hitboxIncrease: 0.75
-  movementSpeed: 1
+  movementSpeed: 1.8
   trainingTime: 4
   cost: 0
