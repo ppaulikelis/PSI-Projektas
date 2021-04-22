@@ -20,4 +20,4 @@ MonoBehaviour:
   hitboxIncrease: 0.5
   movementSpeed: 1.8
   trainingTime: 3
-  cost: 0
+  cost: 20
