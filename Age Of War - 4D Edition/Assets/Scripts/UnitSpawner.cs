@@ -21,7 +21,6 @@ public class UnitSpawner : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(currentUnit);
             if (!isTraining && unitsQueue.Count > 0)  // if queue has units left: set cooldown to its training time, start training
             {
                 currentUnit = unitsQueue.Peek();

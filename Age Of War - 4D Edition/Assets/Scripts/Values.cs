@@ -8,16 +8,14 @@ public class Values : MonoBehaviour
     private const string defaultGold = "Gold: ";
     private const string defaultExperience = "Experience: ";
 
-    public int gold;
-    public int experience;
+    public int gold = 0;
+    public int experience = 0;
 
     public Text goldText;
     public Text experienceText;
 
     private void Start()
     {
-        gold = 0;
-        experience = 0;
 
         StartCoroutine(Increase(1, 2, 1f));
     }
