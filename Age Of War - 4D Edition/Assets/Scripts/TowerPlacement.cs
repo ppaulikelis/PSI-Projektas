@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class TowerPlacement : MonoBehaviour
 {
+    int i = 0;
     // Start is called before the first frame update
     public Values values;
     void Start()
     {
-
+      
     }
 
     // Update is called once per frame
@@ -19,22 +20,28 @@ public class TowerPlacement : MonoBehaviour
 
     public void BuildTower(Tower tower)
     {
-        if (values.gold >= tower.cost && !tower.isBuilt)
-        {
-            values.gold -= tower.cost;
-            GameObject newTower = new GameObject("Tower Placement", typeof(SpriteRenderer));
-            newTower.GetComponent<SpriteRenderer>().sprite = tower.artwork;
-            newTower.transform.position = new Vector3(-12, tower.yPlacement, 0);
-            tower.isBuilt = true;
-        }
-        else if (tower.isBuilt)
-        {
-            Debug.Log("This tower is already built!");
+
+        if (i < 3) { 
+            if (values.gold < tower.cost[i])
+            {
+                Debug.Log("Not enough gold to buy this upgrade!");
+                return;
+            }
+
+            if (values.gold >= tower.cost[i])
+            {
+                values.gold -= tower.cost[i];
+                GameObject newTower = new GameObject("Tower Placement", typeof(SpriteRenderer));
+                newTower.GetComponent<SpriteRenderer>().sprite = tower.artwork;
+                newTower.transform.position = new Vector3(tower.xPlacement[i], tower.yPlacement[i], 0);
+                if (i < 3)
+                    i++;
+            }
         }
         else
         {
-            Debug.Log("Not enough gold to buy this upgrade!");
+            Debug.Log("This tower is full upgraded!");
         }
-    }
 
+    }
 }

@@ -13,6 +13,13 @@ MonoBehaviour:
   m_Name: Tower1
   m_EditorClassIdentifier: 
   artwork: {fileID: 21300000, guid: c900c5209dc77d44fb3d512d5ac11a62, type: 3}
-  cost: 10
-  yPlacement: -1.8
-  xPlacement: -12
+  cost: 0a000000140000001e000000
+  yPlacement:
+  - -1.8
+  - -0.5
+  - 0.8
+  xPlacement:
+  - -12
+  - -12
+  - -12
+  isBuilt: 000000
