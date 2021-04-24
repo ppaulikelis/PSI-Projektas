@@ -21,22 +21,13 @@ public class UnitSpawner : MonoBehaviour
 
     void Update()
     {
-            if (!isTraining && unitsQueue.Count > 0)  // if queue has units left: set cooldown to its training time, start training
-            {
-                currentUnit = unitsQueue.Peek();
-            if ((currentUnit != null) && (values.GetComponent<Values>().gold >= currentUnit.cost))
-            {
-                values.GetComponent<Values>().gold -= currentUnit.cost;
-                cooldown = (float)currentUnit.trainingTime;
-                isTraining = true;
-            }
-            else
-            {
-                currentUnit = unitsQueue.Dequeue();
-            }
-
-            }
-
+        if (!isTraining && unitsQueue.Count > 0)  // if queue has units left: set cooldown to its training time, start training
+        {
+            currentUnit = unitsQueue.Peek();
+            cooldown = (float)currentUnit.trainingTime;
+            isTraining = true;
+        }
+   
        if(isTraining) // if training is in progress: reduce cooldown, set slider value, set UI "boxes" values
         {
             cooldown -= Time.deltaTime;
@@ -80,8 +71,9 @@ public class UnitSpawner : MonoBehaviour
 
     public void GenerateUnit(Unit unit) // code to be run when button is pressed
     {
-        if(unitsQueue.Count < 5 && (values.GetComponent<Values>().gold >= unit.cost))
+        if(unitsQueue.Count < 5 && values.GetComponent<Values>().gold >= unit.cost)
         {
+            values.GetComponent<Values>().gold -= unit.cost;
             unitsQueue.Enqueue(unit);
         }
     }
