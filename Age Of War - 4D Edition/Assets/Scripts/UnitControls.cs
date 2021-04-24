@@ -184,6 +184,8 @@ public class UnitControls : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+        healthBar.SetHealth(health, unitData.health);
+        animator.SetTrigger("Damaged");
     }
 
     // OnMouse enables/disables healthbars on units when mouse is moved on top 
