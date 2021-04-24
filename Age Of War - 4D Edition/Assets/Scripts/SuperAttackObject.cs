@@ -5,6 +5,8 @@ using UnityEngine;
 public class SuperAttackObject : MonoBehaviour
 {
     public float speed = 7.0f;
+    public string targetTag;
+    public int damage = 20;
     private Rigidbody2D rb;
 
     void Start()
@@ -23,10 +25,10 @@ public class SuperAttackObject : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.collider.tag == "Enemy")
+        if(collision.collider.tag == targetTag)
         {
             UnitControls enemyScript = collision.collider.GetComponent<UnitControls>();
-            enemyScript.TakeDamage(20);
+            enemyScript.TakeDamage(damage);
             Destroy(this.gameObject);
         }
         else

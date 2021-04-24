@@ -11,6 +11,7 @@ public class SuperAttack : MonoBehaviour
     public float objectRespawnTime = 1.0f;
     public float attackRespawnTime = 30.0f;
     public bool isReady = true;
+    public string targetTag;
 
     IEnumerator SuperAttackPreparation(float time)
     {
@@ -22,6 +23,7 @@ public class SuperAttack : MonoBehaviour
     private void SpawnObject()
     {
         GameObject a = Instantiate(superAttackObjectPrefab) as GameObject;
+        a.GetComponent<SuperAttackObject>().targetTag = targetTag;
         a.transform.position = new Vector2(Random.Range(-5, 35), 10);
     }
 
