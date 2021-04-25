@@ -15,4 +15,7 @@ public class Unit : ScriptableObject
     public float movementSpeed;
     public int trainingTime;
     public int cost;
+
+    public int rewardGold;
+    public int rewardExperience;
 }

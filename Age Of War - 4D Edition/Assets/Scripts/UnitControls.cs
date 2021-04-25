@@ -8,6 +8,8 @@ public class UnitControls : MonoBehaviour
     public Unit unitData;
     public UnitHealthBar healthBar;
 
+    public Values values;
+
     public bool isEnemy = false;
     private int isEnemyInt;
     public bool isMoving = true;
@@ -21,10 +23,10 @@ public class UnitControls : MonoBehaviour
     private float movementSpeed;
     private int trainingTime;
     private int cost;
+    private int rewardGold;
+    private int rewardExperience;
 
     private SpriteRenderer[] barRenderers;
-
-    //private bool DEBUG;
 
     private void Start()
     {
@@ -38,6 +40,8 @@ public class UnitControls : MonoBehaviour
         movementSpeed = unitData.movementSpeed;
         trainingTime = unitData.trainingTime;
         cost = unitData.cost;
+        rewardGold = unitData.rewardGold;
+        rewardExperience = unitData.rewardExperience;
         if (isEnemy)
         {
             isEnemyInt = -1;
@@ -61,6 +65,8 @@ public class UnitControls : MonoBehaviour
         {
             rend.enabled = false;
         }
+
+        values = FindObjectOfType<Values>();
     }
 
     void Update()
@@ -68,6 +74,13 @@ public class UnitControls : MonoBehaviour
         // death
         if (health <= 0)
         {
+            if(gameObject.tag.Equals("Enemy")) // code to give player gold/experience when unit is killed
+            {
+                values.gold += rewardGold;
+                values.experience += rewardExperience;
+            }
+            // here should go code in the future to give gold to "enemy" AI if tag.Equals("Friendly")
+
             Destroy(gameObject);
         }
 
