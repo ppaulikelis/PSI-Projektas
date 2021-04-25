@@ -21,3 +21,5 @@ MonoBehaviour:
   movementSpeed: 1.8
   trainingTime: 4
   cost: 30
+  rewardGold: 35
+  rewardExperience: 5
