@@ -7,7 +7,6 @@ public class UnitSpawner : MonoBehaviour
 {
     Queue<Unit> unitsQueue;
     Unit currentUnit;
-    public bool shouldSpawnEnemy = false;
     public GameObject values;
     public Slider slider;
     public Toggle[] toggles;
@@ -53,12 +52,6 @@ public class UnitSpawner : MonoBehaviour
                 newObject.GetComponent<BoxCollider2D>().size = new Vector2(1, 1);
                 newObject.GetComponent<UnitControls>().unitData = currentUnit;
                 newObject.GetComponent<SpriteRenderer>().sprite = currentUnit.artwork;
-
-                if (shouldSpawnEnemy)
-                {
-                    newObject.transform.localScale = new Vector2(-1, 1);
-                    newObject.GetComponent<UnitControls>().isEnemy = true;
-                }
 
                 unitsQueue.Dequeue();
 

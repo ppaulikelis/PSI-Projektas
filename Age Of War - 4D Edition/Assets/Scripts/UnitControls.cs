@@ -46,6 +46,7 @@ public class UnitControls : MonoBehaviour
         {
             isEnemyInt = -1;
             gameObject.tag = "Enemy";
+            GetComponent<SpriteRenderer>().flipX = true;
         }
         else
         {

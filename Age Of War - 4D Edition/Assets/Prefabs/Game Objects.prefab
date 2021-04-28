@@ -49,6 +49,7 @@ MonoBehaviour:
   objectRespawnTime: 1
   attackRespawnTime: 30
   isReady: 1
+  targetTag: 
 --- !u!1 &1624608427361517195
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,6 +132,54 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2751832901539392863
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7209530294216697299}
+  - component: {fileID: 9037093142673373362}
+  m_Layer: 0
+  m_Name: Enemy Unit Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7209530294216697299
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2751832901539392863}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 42, y: -6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 908637439096245110}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9037093142673373362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2751832901539392863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25a5b993d2e46414ab830e65153e4b01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gold: 0
+  experience: 0
+  spawnChance: 0.05
+  spawnCooldown: 0.1
+  spawner: {fileID: 2751832901539392863}
 --- !u!1 &6882332757607606045
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,6 +465,7 @@ Transform:
   - {fileID: 925462144}
   - {fileID: 9098053944957010121}
   - {fileID: 5600708260268836350}
+  - {fileID: 7209530294216697299}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -509,7 +559,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d85a96d923346d54885ed191c9287f08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shouldSpawnEnemy: 0
   values: {fileID: 0}
   slider: {fileID: 0}
   toggles:
