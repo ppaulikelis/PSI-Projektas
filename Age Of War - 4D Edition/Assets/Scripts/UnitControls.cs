@@ -9,6 +9,7 @@ public class UnitControls : MonoBehaviour
     public UnitHealthBar healthBar;
 
     public Values values;
+    public EnemyAI enemyAI;
 
     public bool isEnemy = false;
     private int isEnemyInt;
@@ -68,6 +69,7 @@ public class UnitControls : MonoBehaviour
         }
 
         values = FindObjectOfType<Values>();
+        enemyAI = FindObjectOfType<EnemyAI>();
     }
 
     void Update()
@@ -80,7 +82,11 @@ public class UnitControls : MonoBehaviour
                 values.gold += rewardGold;
                 values.experience += rewardExperience;
             }
-            // here should go code in the future to give gold to "enemy" AI if tag.Equals("Friendly")
+            else if(gameObject.tag.Equals("Friendly"))  // gives enemy AI gold and experience when killing player units
+            {
+                enemyAI.gold += rewardGold;
+                enemyAI.experience += rewardExperience;
+            }
 
             Destroy(gameObject);
         }
