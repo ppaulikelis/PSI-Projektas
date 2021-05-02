@@ -46,7 +46,7 @@ public class UnitSpawner : MonoBehaviour
 
             if (cooldown <= 0)  // if training is over: create new GameObject, set its data and sprite, remove unit from queue, reset slider and UI "box" value, end training
             {
-                GameObject newObject = new GameObject("Unit", typeof(UnitControls), typeof(SpriteRenderer), typeof(BoxCollider2D), typeof(Animator));
+                GameObject newObject = new GameObject(currentUnit.name, typeof(UnitControls), typeof(SpriteRenderer), typeof(BoxCollider2D), typeof(Animator));
                 newObject.transform.position = transform.position;
 
                 newObject.GetComponent<BoxCollider2D>().size = new Vector2(1, 1);

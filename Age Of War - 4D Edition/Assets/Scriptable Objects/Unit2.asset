@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Unit2
   m_EditorClassIdentifier: 
   artwork: {fileID: 21300000, guid: bdba9512dd04f774f8f7f068a72e881f, type: 3}
-  animator: {fileID: 9100000, guid: eb72af7220b6f3d468d1711ff5f47e60, type: 2}
-  isRanged: 1
+  animator: {fileID: 9100000, guid: 4250a7c583bca6043813e1fedbbc250f, type: 2}
+  isRanged: 0
   health: 3
   damage: 3
   hitboxIncrease: 0.5
