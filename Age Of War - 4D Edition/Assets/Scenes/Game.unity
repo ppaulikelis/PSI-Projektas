@@ -326,6 +326,10 @@ PrefabInstance:
       propertyPath: targetTag
       value: Friendly
       objectReference: {fileID: 0}
+    - target: {fileID: 8169675437924193395, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
+      propertyPath: turretData
+      value: 
+      objectReference: {fileID: 11400000, guid: 6fb9cb08cb4d6164fa50b9804871d8d1, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
 --- !u!4 &864567230 stripped
@@ -399,6 +403,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8169675437924193395, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
+      propertyPath: turretData
+      value: 
+      objectReference: {fileID: 11400000, guid: 6fb9cb08cb4d6164fa50b9804871d8d1, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
 --- !u!114 &967803387 stripped
@@ -498,7 +506,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a51f208103f6e4d822bb26b1e3ad0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tower: {fileID: 11400000, guid: 3ca0b50f567c8a3488f1e043332322c6, type: 2}
   values: {fileID: 155330514}
+  turretData: {fileID: 11400000, guid: 6fb9cb08cb4d6164fa50b9804871d8d1, type: 2}
+  bullet: {fileID: 705682774261476904, guid: 5558493844fa3e84ca7ee47dd0ae6719, type: 3}
+  shouldSpawn: -1
 --- !u!1 &1804301510
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,7 +731,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2082455819693079525, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2082455819693079525, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -760,14 +772,14 @@ PrefabInstance:
     - target: {fileID: 2082455819693079525, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 11400000, guid: 3ca0b50f567c8a3488f1e043332322c6, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 2082455819693079525, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 11400000, guid: 4149bc8a8322de746889190248b7e795, type: 2}
     - target: {fileID: 2082455819693079525, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: Tower, Assembly-CSharp
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2082455819693079525, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1186,7 +1198,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8222551170940511535, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: gold
-      value: 60
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 8222551170940511535, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: goldText

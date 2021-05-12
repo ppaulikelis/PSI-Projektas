@@ -2,28 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turret : MonoBehaviour
+public class TurretController : MonoBehaviour
 {
-    public float range;
+    public Turret turretData;
+
     public Transform target;
     public string targetTag;
     Vector2 turretDirection;
     public GameObject bullet;
-    public float fireRate;
     float nextTimeToFire = 0;
     public Transform shootPoint;
+    public float range;
+    public float fireRate;
     public float force;
     public int damage;
 
     // Start is called before the first frame update
     void Start()
     {
+        UpdateVariables();
+
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
         if (targetTag.Equals("Friendly"))
         {
             GetComponent<SpriteRenderer>().flipX = true;
             shootPoint.localPosition = new Vector3(shootPoint.localPosition.x * -1, shootPoint.localPosition.y * -1, shootPoint.localPosition.z);
         }
+    }
+
+    public void UpdateVariables() 
+    {
+        range = turretData.range;
+        fireRate = turretData.fireRate;
+        force = turretData.force;
+        damage = turretData.damage;
     }
 
     void UpdateTarget()

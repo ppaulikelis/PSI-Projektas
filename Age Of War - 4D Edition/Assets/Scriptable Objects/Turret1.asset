@@ -9,16 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bf3a91457ba04e48b05dbeda50ad41a, type: 3}
-  m_Name: Tower1
+  m_Script: {fileID: 11500000, guid: 2d021f07600d5c241b683014e9823871, type: 3}
+  m_Name: Turret1
   m_EditorClassIdentifier: 
-  artwork: {fileID: 21300000, guid: c900c5209dc77d44fb3d512d5ac11a62, type: 3}
-  cost: 0a000000140000001e000000
-  yPlacement:
-  - -1.8
-  - 0
-  - 1.8
-  xPlacement:
-  - -12
-  - -12
-  - -12
+  artwork: {fileID: 21300000, guid: 17959d1689a692a418357ac6c4a9a164, type: 3}
+  range: 25
+  fireRate: 1
+  force: 200
+  damage: 1
+  shootpointOffsetX: 1
+  price: 10

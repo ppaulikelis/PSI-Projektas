@@ -4,6 +4,10 @@ using System.Collections;
 
 public class TurretButton: MonoBehaviour, IPointerClickHandler
 {
+    public int index = 0;
+    public TowerPlacement towerPlacement;
+    public Values values;
+
     void Start()
     {
         AddEventSystem();
@@ -11,7 +15,7 @@ public class TurretButton: MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("Mouse Clicked!");
+        towerPlacement.shouldSpawn = index;
     }
 
     void AddEventSystem()
