@@ -18,4 +18,4 @@ MonoBehaviour:
   force: 200
   damage: 1
   shootpointOffsetX: 1
-  price: 10
+  price: 100
