@@ -4,38 +4,35 @@ using UnityEngine;
 
 public class TowerPlacement : MonoBehaviour
 {
-    int i = 0;
+    int towerCount = 0;
     // Start is called before the first frame update
     public Values values;
-    void Start()
-    {
-      
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public void BuildTower(Tower tower)
     {
-
-        if (i < 3) { 
-            if (values.gold < tower.cost[i])
+        if (towerCount < 3) { 
+            if (values.gold < tower.cost[towerCount])
             {
                 Debug.Log("Not enough gold to buy this upgrade!");
-                return;
             }
 
-            if (values.gold >= tower.cost[i])
-            {
-                values.gold -= tower.cost[i];
+            else
+            { 
+                values.gold -= tower.cost[towerCount];
                 GameObject newTower = new GameObject("Tower Placement", typeof(SpriteRenderer));
                 newTower.GetComponent<SpriteRenderer>().sprite = tower.artwork;
-                newTower.transform.position = new Vector3(tower.xPlacement[i], tower.yPlacement[i], 0);
-                if (i < 3)
-                    i++;
+                newTower.transform.position = new Vector3(tower.xPlacement[towerCount], tower.yPlacement[towerCount], 0);
+                newTower.transform.SetParent(gameObject.transform);
+
+                GameObject turretButton = new GameObject("Button", typeof(SpriteRenderer), typeof(BoxCollider2D), typeof(TurretButton));
+                turretButton.transform.SetParent(newTower.transform);
+                turretButton.GetComponent<BoxCollider2D>().size = new Vector2(1, 1);
+                turretButton.GetComponent<BoxCollider2D>().isTrigger = true;
+                turretButton.transform.localPosition = Vector2.zero;
+                if (towerCount < 3) 
+                {
+                    towerCount++;
+                }    
             }
         }
         else
