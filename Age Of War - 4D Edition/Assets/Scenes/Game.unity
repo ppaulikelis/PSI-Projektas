@@ -1207,6 +1207,18 @@ PrefabInstance:
       propertyPath: units.Array.data[2]
       value: 
       objectReference: {fileID: 11400000, guid: e2d01feddacdbc746bb874f8b860b91e, type: 2}
+    - target: {fileID: 9037093142673373362, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
+      propertyPath: chances.Array.data[0]
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9037093142673373362, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
+      propertyPath: chances.Array.data[1]
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9037093142673373362, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
+      propertyPath: chances.Array.data[2]
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 9041870817489560339, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: m_Name
       value: Player Unit Spawner

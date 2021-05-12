@@ -74,6 +74,10 @@ public class UnitControls : MonoBehaviour
 
     void Update()
     {
+        // animations
+        animator.SetBool("Attacking", isAttacking);
+        animator.SetBool("Walking", isMoving);
+
         // death
         if (health <= 0)
         {
@@ -96,6 +100,7 @@ public class UnitControls : MonoBehaviour
         {
             transform.Translate(Vector2.right * Time.deltaTime * movementSpeed * isEnemyInt);
         }
+     
 
         // combat
         RaycastHit2D closeHit = Physics2D.Raycast(transform.position + new Vector3( (1.01f + hitboxIncrease) / 2 * isEnemyInt, 0, 0),
