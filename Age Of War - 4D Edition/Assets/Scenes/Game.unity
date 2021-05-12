@@ -280,7 +280,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -348,67 +348,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dfcfaef690b5da4c9c9449b535143cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &929879399
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1483544838}
-    m_Modifications:
-    - target: {fileID: 8169675437924193392, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_Name
-      value: Friendly Turret
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -25.21983
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.061942752
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.5394018
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193395, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: turretData
-      value: 
-      objectReference: {fileID: 11400000, guid: 6fb9cb08cb4d6164fa50b9804871d8d1, type: 2}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
 --- !u!114 &967803387 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2082455818640773062, guid: e1986e648a78aa848846ead63b944d36, type: 3}
@@ -441,11 +380,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_MaxRayIntersections: 0
---- !u!4 &1212942055 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-  m_PrefabInstance: {fileID: 929879399}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1220093986 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5065363750841252142, guid: e1986e648a78aa848846ead63b944d36, type: 3}
@@ -472,7 +406,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1483544838
 Transform:
   m_ObjectHideFlags: 0
@@ -484,7 +418,6 @@ Transform:
   m_LocalPosition: {x: 14.22983, y: 0.061942752, z: -1.5394018}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1212942055}
   - {fileID: 584315209}
   m_Father: {fileID: 0}
   m_RootOrder: 2
