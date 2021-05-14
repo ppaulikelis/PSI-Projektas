@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 253f00a7d1371f243be586f20d0a3695, type: 3}
-  m_Name: Unit1
+  m_Name: SA_Unit1
   m_EditorClassIdentifier: 
   artwork: {fileID: 21300000, guid: 21883fb46f5ffeb4da9da6dbbfd2a03e, type: 3}
   animator: {fileID: 9100000, guid: eb72af7220b6f3d468d1711ff5f47e60, type: 2}

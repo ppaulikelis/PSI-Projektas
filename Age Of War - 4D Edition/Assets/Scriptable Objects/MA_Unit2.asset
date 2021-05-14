@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 253f00a7d1371f243be586f20d0a3695, type: 3}
   m_Name: MA_Unit2
   m_EditorClassIdentifier: 
-  artwork: {fileID: 0}
-  animator: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 4f1a1a4950d309748a4be37802fc3be0, type: 3}
+  animator: {fileID: 9100000, guid: 4350b95b69fd41f42bdccfa7974681af, type: 2}
   isRanged: 0
-  health: 0
-  damage: 0
-  hitboxIncrease: 0
-  movementSpeed: 0
-  trainingTime: 0
-  cost: 0
-  rewardGold: 0
-  rewardExperience: 0
+  health: 30
+  damage: 8
+  hitboxIncrease: 0.75
+  movementSpeed: 2
+  trainingTime: 4
+  cost: 50
+  rewardGold: 63
+  rewardExperience: 6

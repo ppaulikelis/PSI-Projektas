@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f62d2fb8bad6f7146b842fce2adfeca6, type: 3}
   m_Name: Middle Ages
   m_EditorClassIdentifier: 
-  units: []
-  tower: {fileID: 0}
-  turret: {fileID: 0}
-  superAttackObject: {fileID: 0}
-  baseSprite: {fileID: 0}
-  experienceNeeded: 0
+  units:
+  - {fileID: 11400000, guid: f02098fdf398dc44698e447fe62d585b, type: 2}
+  - {fileID: 11400000, guid: 21ca8e9e4525170468d7c760f685a4a2, type: 2}
+  - {fileID: 11400000, guid: 851685854358dcc4eaf2484d2c5eac8f, type: 2}
+  tower: {fileID: 11400000, guid: 312d92d85c6a151498db6cdba96f2ff8, type: 2}
+  turret: {fileID: 11400000, guid: 4545c7de91742ac4ca35010143eb99cf, type: 2}
+  superAttackObject: {fileID: 1131110790296284848, guid: 50fff06f4cf02c04f8e737817647846f, type: 3}
+  baseSprite: {fileID: 21300000, guid: 8be15cb8cdf341b49875e4fbdff2d194, type: 3}
+  experienceNeeded: 1000

@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bf3a91457ba04e48b05dbeda50ad41a, type: 3}
   m_Name: MA_Tower
   m_EditorClassIdentifier: 
-  artwork: {fileID: 0}
-  cost: 
-  yPlacement: []
-  xPlacement: []
+  artwork: {fileID: 21300000, guid: 7844b0970f479934092f6f87c411ef25, type: 3}
+  cost: 14000000280000003c000000
+  yPlacement:
+  - -0.8
+  - 1
+  - 2.8
+  xPlacement:
+  - -12
+  - -12
+  - -12

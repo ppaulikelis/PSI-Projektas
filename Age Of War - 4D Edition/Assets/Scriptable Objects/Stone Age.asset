@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f62d2fb8bad6f7146b842fce2adfeca6, type: 3}
   m_Name: Stone Age
   m_EditorClassIdentifier: 
-  units: []
-  tower: {fileID: 0}
-  turret: {fileID: 0}
-  superAttackObject: {fileID: 0}
-  baseSprite: {fileID: 0}
+  units:
+  - {fileID: 11400000, guid: 05c8f4494f80f724f9c552ce479c4844, type: 2}
+  - {fileID: 11400000, guid: cf763621fcaf09f498f48ac8ab74145d, type: 2}
+  - {fileID: 11400000, guid: e2d01feddacdbc746bb874f8b860b91e, type: 2}
+  tower: {fileID: 11400000, guid: 3ca0b50f567c8a3488f1e043332322c6, type: 2}
+  turret: {fileID: 11400000, guid: 6fb9cb08cb4d6164fa50b9804871d8d1, type: 2}
+  superAttackObject: {fileID: 7811809684645403259, guid: ae6ca0da1544e8a4d979d9285487e601, type: 3}
+  baseSprite: {fileID: 21300000, guid: 03fdb1bd808850f4e8183f41742a93b2, type: 3}
   experienceNeeded: 0
