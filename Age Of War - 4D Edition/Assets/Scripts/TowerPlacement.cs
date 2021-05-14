@@ -8,7 +8,6 @@ public class TowerPlacement : MonoBehaviour
     public Tower tower;
     public Values values;
     public Turret turretData;
-    public GameObject bullet;
 
     [Range(0f, 1f)]
     public float penaltyPercent = 0.5f;
@@ -60,10 +59,36 @@ public class TowerPlacement : MonoBehaviour
                     tc[i].enabled = false; 
                     tc[i].GetComponentInChildren<MeshRenderer>().enabled = true;
                     tc[i].transform.GetComponent<TurretButton>().enabled = true;
+                    tc[i].transform.GetComponent<SpriteRenderer>().sprite = turretData.artwork;
                     tc[i].transform.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
                     values.gold += turretData.price - (int)(turretData.price * penaltyPercent);
                     break;
                 }
+            }
+        }
+    }
+
+    public void ReplaceTowers(Tower newTower, Turret newTurret)
+    {
+        this.tower = newTower;
+
+        for (int i = 0; i < towerCount; i++)
+        {
+            this.transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = newTower.artwork;
+            this.transform.GetChild(i).position = new Vector3(newTower.xPlacement[i], newTower.yPlacement[i], 0);
+        }
+        TurretController[] turrets = this.GetComponentsInChildren<TurretController>();
+        foreach(var turr in turrets)
+        {
+            turr.transform.localPosition = Vector2.zero;
+            turr.GetComponentInChildren<TextMesh>().text = newTurret.price.ToString();
+            this.turretData = newTurret;
+            if(!turr.enabled)
+            {
+                turr.turretData = newTurret;
+                turr.UpdateVariables();
+                turr.GetComponent<SpriteRenderer>().sprite = newTurret.artwork;
+                turr.UpdateVariables();
             }
         }
     }
@@ -119,7 +144,7 @@ public class TowerPlacement : MonoBehaviour
         script.shootPoint = newShootpoint;
         script.shootPoint.localPosition = new Vector2(turretData.shootpointOffsetX, 0);
         script.targetTag = "Enemy";
-        script.bullet = bullet;
+        script.bullet = turretData.bullet;
         script.enabled = false;
        
         turret.transform.localPosition = Vector2.zero;  // moving turret to middle of tower block
