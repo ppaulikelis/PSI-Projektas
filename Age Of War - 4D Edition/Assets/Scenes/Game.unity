@@ -240,6 +240,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 692559e3966a1454c929c57f2027131f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &487292060 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5197639816750417597, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
+  m_PrefabInstance: {fileID: 6882332758127446487}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &547928152 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2387189012470818954, guid: e1986e648a78aa848846ead63b944d36, type: 3}
@@ -251,11 +256,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &584315209 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-  m_PrefabInstance: {fileID: 775267558}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &695693993 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3241288772323730581, guid: e1986e648a78aa848846ead63b944d36, type: 3}
@@ -267,67 +267,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &775267558
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1483544838}
-    m_Modifications:
-    - target: {fileID: 8169675437924193392, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_Name
-      value: Enemy Turret
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 27.47
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.061942752
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.5394018
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193395, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: targetTag
-      value: Friendly
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
 --- !u!4 &864567230 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2082455819037886842, guid: e1986e648a78aa848846ead63b944d36, type: 3}
@@ -344,63 +283,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dfcfaef690b5da4c9c9449b535143cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &929879399
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1483544838}
-    m_Modifications:
-    - target: {fileID: 8169675437924193392, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_Name
-      value: Friendly Turret
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -25.21983
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.061942752
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.5394018
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
 --- !u!114 &967803387 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2082455818640773062, guid: e1986e648a78aa848846ead63b944d36, type: 3}
@@ -412,11 +294,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1212942055 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8169675437924193394, guid: fc0c94c885aaf544f864b50a4ce3a11d, type: 3}
-  m_PrefabInstance: {fileID: 929879399}
+--- !u!1 &1176637340 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2347230082883789947, guid: 0dcef4106c8a93440b73933d03bf3e8a, type: 3}
+  m_PrefabInstance: {fileID: 2347230084394025774}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1176637342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176637340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56666c5a40171f54783dd416a44f42bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_MaxRayIntersections: 0
 --- !u!114 &1220093986 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5065363750841252142, guid: e1986e648a78aa848846ead63b944d36, type: 3}
@@ -428,38 +326,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1483544837
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1483544838}
-  m_Layer: 0
-  m_Name: Temporary Turrets
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1483544838
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1483544837}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.22983, y: 0.061942752, z: -1.5394018}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1212942055}
-  - {fileID: 584315209}
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1687120016 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1624608427361517195, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
@@ -477,7 +343,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a51f208103f6e4d822bb26b1e3ad0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tower: {fileID: 11400000, guid: 3ca0b50f567c8a3488f1e043332322c6, type: 2}
   values: {fileID: 155330514}
+  turretData: {fileID: 11400000, guid: 6fb9cb08cb4d6164fa50b9804871d8d1, type: 2}
+  bullet: {fileID: 705682774261476904, guid: 5558493844fa3e84ca7ee47dd0ae6719, type: 3}
+  penaltyPercent: 0.5
+  shouldSpawn: -1
 --- !u!1 &1804301510
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,6 +459,34 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 387738431}
+    - target: {fileID: 2082455818217197162, guid: e1986e648a78aa848846ead63b944d36, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2082455818217197162, guid: e1986e648a78aa848846ead63b944d36, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2082455818217197162, guid: e1986e648a78aa848846ead63b944d36, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1687120018}
+    - target: {fileID: 2082455818217197162, guid: e1986e648a78aa848846ead63b944d36, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2082455818217197162, guid: e1986e648a78aa848846ead63b944d36, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SellTurret
+      objectReference: {fileID: 0}
+    - target: {fileID: 2082455818217197162, guid: e1986e648a78aa848846ead63b944d36, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TowerPlacement, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2082455818217197162, guid: e1986e648a78aa848846ead63b944d36, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2082455818263358906, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -654,11 +553,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2082455819043477413, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2082455819043477413, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2082455819043477413, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -670,7 +569,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2082455819043477413, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BuildTower
+      value: BuyTurret
       objectReference: {fileID: 0}
     - target: {fileID: 2082455819043477413, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -678,15 +577,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2082455819043477413, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 30
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2082455819043477413, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 11400000, guid: 3921a8c1285c28e4f8199eb1eba47800, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 2082455819043477413, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: Tower, Assembly-CSharp
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2082455819249808869, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -698,7 +597,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2082455819693079525, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2082455819693079525, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -739,14 +638,14 @@ PrefabInstance:
     - target: {fileID: 2082455819693079525, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 11400000, guid: 3ca0b50f567c8a3488f1e043332322c6, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 2082455819693079525, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 11400000, guid: 4149bc8a8322de746889190248b7e795, type: 2}
     - target: {fileID: 2082455819693079525, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: Tower, Assembly-CSharp
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2082455819693079525, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -754,11 +653,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2082455819896385377, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2082455819896385377, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2082455819896385377, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -770,7 +669,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2082455819896385377, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BuildTower
+      value: BuyTurret
       objectReference: {fileID: 0}
     - target: {fileID: 2082455819896385377, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -778,15 +677,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2082455819896385377, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 20
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2082455819896385377, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 11400000, guid: 4149bc8a8322de746889190248b7e795, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 2082455819896385377, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: Tower, Assembly-CSharp
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2082455820046023005, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_AnchorMax.x
@@ -798,11 +697,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2082455820076629399, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2082455820076629399, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2082455820076629399, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -826,7 +725,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2082455820076629399, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BuildTower
+      value: BuyTurret
       objectReference: {fileID: 0}
     - target: {fileID: 2082455820076629399, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -842,7 +741,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2082455820076629399, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2082455820076629399, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
@@ -850,7 +749,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2082455820076629399, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2082455820076629399, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
@@ -859,10 +758,10 @@ PrefabInstance:
     - target: {fileID: 2082455820076629399, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 11400000, guid: 3ca0b50f567c8a3488f1e043332322c6, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 2082455820076629399, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: Tower, Assembly-CSharp
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2082455820076629399, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1055,6 +954,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2751832901539392863, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
+      propertyPath: m_Name
+      value: Enemy AI | Unit Spawner
+      objectReference: {fileID: 0}
     - target: {fileID: 5088872416893841098, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.99
@@ -1184,12 +1087,32 @@ PrefabInstance:
       value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 9037093142673373362, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
+      propertyPath: tower
+      value: 
+      objectReference: {fileID: 11400000, guid: 3ca0b50f567c8a3488f1e043332322c6, type: 2}
+    - target: {fileID: 9037093142673373362, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 705682774261476904, guid: 5558493844fa3e84ca7ee47dd0ae6719, type: 3}
+    - target: {fileID: 9037093142673373362, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
+      propertyPath: towerBase
+      value: 
+      objectReference: {fileID: 487292060}
+    - target: {fileID: 9037093142673373362, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
+      propertyPath: turretData
+      value: 
+      objectReference: {fileID: 11400000, guid: 6fb9cb08cb4d6164fa50b9804871d8d1, type: 2}
+    - target: {fileID: 9037093142673373362, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: spawnChance
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 9037093142673373362, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: spawnCooldown
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9037093142673373362, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
+      propertyPath: towerSpawnChance
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 9037093142673373362, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: units.Array.size
@@ -1218,6 +1141,26 @@ PrefabInstance:
     - target: {fileID: 9037093142673373362, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: chances.Array.data[2]
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9037093142673373362, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
+      propertyPath: towerTurretSpawnChance
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 9037093142673373362, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
+      propertyPath: towerChances.Array.data[0]
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9037093142673373362, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
+      propertyPath: towerChances.Array.data[1]
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9037093142673373362, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
+      propertyPath: towerTurretChances.Array.data[0]
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9037093142673373362, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
+      propertyPath: towerTurretChances.Array.data[1]
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 9041870817489560339, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: m_Name
