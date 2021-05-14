@@ -11,14 +11,14 @@ public class EnemyAI : MonoBehaviour
 
     [Tooltip("Chances for each unit to spawn (e.g. 0.25 = 25%)")]
     public float[] chances= new float[3];
-    [Tooltip("Chance to spawn tower/turret")]
-    public float[] towerChances = new float[2];
+    [Tooltip("Chance to spawn tower(0)/turret(1)")]
+    public float[] towerTurretChances = new float[2];
     [Tooltip("Chance to spawn enemy every 'spawnCooldown' seconds")]
     [Range(0f, 1f)]
     public float spawnChance;
     [Tooltip("Chance to spawn enemy tower(0)/turret(1) every 'spawnCooldown' seconds")]
     [Range(0f, 1f)]
-    public float towerSpawnChance;
+    public float towerTurretSpawnChance;
     [Tooltip("Cooldown between new chance to spawn enemy in seconds")]
     public float spawnCooldown;
 
@@ -40,10 +40,10 @@ public class EnemyAI : MonoBehaviour
             Debug.LogWarning("Don't change length of chances array in EnemyAI");
             Array.Resize(ref chances, 3);
         }
-        if(towerChances.Length != 2)
+        if(towerTurretChances.Length != 2)
         {
             Debug.LogWarning("Don't change length of towerChances array in EnemyAI");
-            Array.Resize(ref towerChances, 2);
+            Array.Resize(ref towerTurretChances, 2);
         }
     }
 
@@ -78,11 +78,10 @@ public class EnemyAI : MonoBehaviour
         {
             yield return new WaitForSeconds(time);
 
-            if (UnityEngine.Random.Range(0f, 1f) < towerSpawnChance)
+            if (UnityEngine.Random.Range(0f, 1f) < towerTurretSpawnChance)  // adding random tower/turret spawning
             {
-                SpawnTowerOrTurret(towerChances);
+                SpawnTowerOrTurret(towerTurretChances);
             }
-
 
             bool shouldSpawn = UnityEngine.Random.Range(0f,1f) < spawnChance;   // adding randomness to spawning
           
@@ -124,9 +123,10 @@ public class EnemyAI : MonoBehaviour
         float current = UnityEngine.Random.Range(0f, 1f);
         if (current <= chances[0])  // build tower
         {
-            if(gold >= tower.cost[towerCount] && towerCount <3)
+            if(towerCount < 3 && gold >= tower.cost[towerCount])
             {
                 gold -= tower.cost[towerCount];
+
                 GameObject newTower = new GameObject("Enemy Tower" + towerCount, typeof(SpriteRenderer));     // tower creation
                 newTower.GetComponent<SpriteRenderer>().sprite = tower.artwork;
                 newTower.transform.position = new Vector3(towerBase.transform.position.x, tower.yPlacement[towerCount], 0);
@@ -140,9 +140,8 @@ public class EnemyAI : MonoBehaviour
             if(gold >= turretData.price && towerBase.transform.childCount > turretCount && turretCount < 3)
             {
                 gold -= turretData.price;
-                Transform turretSpot = towerBase.transform.GetChild(turretCount);
 
-                GameObject turret = new GameObject("Button", typeof(SpriteRenderer), typeof(BoxCollider2D), typeof(TurretController));  // turret creation
+                GameObject turret = new GameObject("Enemy turret", typeof(SpriteRenderer), typeof(BoxCollider2D), typeof(TurretController));  // turret creation
                 turret.transform.SetParent(towerBase.transform.GetChild(turretCount));
                 TurretController script = turret.GetComponent<TurretController>();  // setting up TurretController script using turretData
                 script.turretData = turretData;

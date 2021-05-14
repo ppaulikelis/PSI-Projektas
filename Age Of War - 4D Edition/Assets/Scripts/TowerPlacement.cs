@@ -12,32 +12,38 @@ public class TowerPlacement : MonoBehaviour
 
     [Range(0f, 1f)]
     public float penaltyPercent = 0.5f;
-    public int shouldSpawn;   // -1: no turret buying, 0,1,2: buy turret indexed 0,1,2
+
+    [HideInInspector]
+    public int shouldSpawn = -1;   // -1: no turret buying, 0,1,2: buy turret indexed 0,1,2
     int towerCount = 0;
 
-    private void Start()
-    {
-        shouldSpawn = -1;
-    }
 
     void Update()
     {
         if(shouldSpawn > -1)
         {
-            if (values.gold >= turretData.price)
-            {
-                values.gold -= turretData.price;
-
-                TurretController[] tc = this.GetComponentsInChildren<TurretController>();
-                if (tc[shouldSpawn].enabled == false)
-                {
-                    tc[shouldSpawn].transform.GetComponent<TurretButton>().enabled = false;
-                    tc[shouldSpawn].GetComponentInChildren<MeshRenderer>().enabled = false;
-                    tc[shouldSpawn].transform.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-                    tc[shouldSpawn].enabled = true;
-                }
-            }
+            BuyTurret(shouldSpawn);
             shouldSpawn = -1;
+        }
+    }
+
+    // buys tower if conditions are met at index (where 0-bottom,1-middle,2-top)
+    public void BuyTurret(int index)
+    {
+        if(index < 0 || index > 2)
+        {
+            Debug.Log("Wrong index in BuyTurret(index)");
+            return;
+        }
+        TurretController[] tc = this.GetComponentsInChildren<TurretController>();   // gets all turretControllers (even if they're not enabled)
+        if(values.gold >= turretData.price && tc.Length > index && tc[index].enabled == false)
+        {
+            // add gold, remove "click-icon-to-buy", remove price text, make it fully visible, enable it
+            values.gold -= turretData.price;
+            tc[index].transform.GetComponent<TurretButton>().enabled = false;
+            tc[index].GetComponentInChildren<MeshRenderer>().enabled = false;
+            tc[index].transform.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            tc[index].enabled = true;
         }
     }
 
@@ -59,19 +65,6 @@ public class TowerPlacement : MonoBehaviour
                     break;
                 }
             }
-        }
-    }
-
-    public void BuildTurretWithButton(int index)
-    {
-        TurretController[] tc = this.GetComponentsInChildren<TurretController>();
-        if(values.gold >= turretData.price && tc.Length > index && tc[index].enabled == false)
-        {
-            values.gold -= turretData.price;
-            tc[index].transform.GetComponent<TurretButton>().enabled = false;
-            tc[index].GetComponentInChildren<MeshRenderer>().enabled = false;
-            tc[index].transform.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-            tc[index].enabled = true;
         }
     }
 
@@ -97,7 +90,7 @@ public class TowerPlacement : MonoBehaviour
                 turretButton.transform.SetParent(newTower.transform);
                 SetValues(turretButton);
 
-                GameObject text = new GameObject("Price Text", typeof(MeshRenderer), typeof(TextMesh));
+                GameObject text = new GameObject("Price Text", typeof(MeshRenderer), typeof(TextMesh)); // price text creation
                 TextMesh textMesh = text.GetComponent<TextMesh>();
                 textMesh.characterSize = 0.05f;
                 textMesh.fontSize = 100;
@@ -105,12 +98,8 @@ public class TowerPlacement : MonoBehaviour
                 textMesh.color = new Color32(255, 215, 0, 255);
                 text.transform.SetParent(turretButton.transform);
                 text.transform.localPosition = Vector2.zero;
-      
 
-                if (towerCount < 3) 
-                {
-                    towerCount++;
-                }    
+                towerCount++;  
             }
         }
         else
@@ -119,9 +108,10 @@ public class TowerPlacement : MonoBehaviour
         }
     }
 
+    // sets all values for TurretController script using turretData, adds "click-icon-to-buy" function, changes visual cues to see if turret is bought
     private void SetValues(GameObject turret)
     {
-        TurretController script = turret.GetComponent<TurretController>();  // setting up TurretController script using turretData
+        TurretController script = turret.GetComponent<TurretController>();  // script setup
         script.turretData = turretData;
         script.UpdateVariables();
         Transform newShootpoint = new GameObject("Shootpoint").transform;
@@ -141,7 +131,7 @@ public class TowerPlacement : MonoBehaviour
         turret.GetComponent<BoxCollider2D>().size = new Vector2(1, 1);
         turret.GetComponent<BoxCollider2D>().isTrigger = true;
 
-        TurretButton turrButScript = turret.GetComponent<TurretButton>();   // setting up fake turret button (not using UI)
+        TurretButton turrButScript = turret.GetComponent<TurretButton>();   // setting up fake turret button ("click-icon-to-buy" without using UI buttons)
         turrButScript.values = values;
         turrButScript.towerPlacement = this;
         turrButScript.index = towerCount;

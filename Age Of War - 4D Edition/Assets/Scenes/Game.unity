@@ -240,36 +240,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 692559e3966a1454c929c57f2027131f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &487292060
+--- !u!1 &487292060 stripped
 GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 5197639816750417597, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
+  m_PrefabInstance: {fileID: 6882332758127446487}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 487292061}
-  m_Layer: 0
-  m_Name: Enemy Tower Placement
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &487292061
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 487292060}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 42, y: -1.8, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 6882332758127446488}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &547928152 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2387189012470818954, guid: e1986e648a78aa848846ead63b944d36, type: 3}
@@ -594,7 +569,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2082455819043477413, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BuildTurretWithButton
+      value: BuyTurret
       objectReference: {fileID: 0}
     - target: {fileID: 2082455819043477413, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -694,7 +669,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2082455819896385377, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BuildTurretWithButton
+      value: BuyTurret
       objectReference: {fileID: 0}
     - target: {fileID: 2082455819896385377, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -750,7 +725,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2082455820076629399, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BuildTurretWithButton
+      value: BuyTurret
       objectReference: {fileID: 0}
     - target: {fileID: 2082455820076629399, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -979,6 +954,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2751832901539392863, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
+      propertyPath: m_Name
+      value: Enemy AI | Unit Spawner
+      objectReference: {fileID: 0}
     - target: {fileID: 5088872416893841098, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.99
@@ -1105,7 +1084,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9037093142673373362, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: gold
-      value: 960
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 9037093142673373362, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: tower
@@ -1164,11 +1143,23 @@ PrefabInstance:
       value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 9037093142673373362, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
+      propertyPath: towerTurretSpawnChance
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 9037093142673373362, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: towerChances.Array.data[0]
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 9037093142673373362, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: towerChances.Array.data[1]
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9037093142673373362, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
+      propertyPath: towerTurretChances.Array.data[0]
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9037093142673373362, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
+      propertyPath: towerTurretChances.Array.data[1]
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 9041870817489560339, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
