@@ -62,6 +62,19 @@ public class TowerPlacement : MonoBehaviour
         }
     }
 
+    public void BuildTurretWithButton(int index)
+    {
+        TurretController[] tc = this.GetComponentsInChildren<TurretController>();
+        if(values.gold >= turretData.price && tc.Length > index && tc[index].enabled == false)
+        {
+            values.gold -= turretData.price;
+            tc[index].transform.GetComponent<TurretButton>().enabled = false;
+            tc[index].GetComponentInChildren<MeshRenderer>().enabled = false;
+            tc[index].transform.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            tc[index].enabled = true;
+        }
+    }
+
     // builds tower and attaches turret, button to it and text (turret controls are disabled till turret is bought)
     public void BuildTower()
     {
