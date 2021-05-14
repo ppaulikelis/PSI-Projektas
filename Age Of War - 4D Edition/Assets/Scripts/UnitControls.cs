@@ -123,11 +123,15 @@ public class UnitControls : MonoBehaviour
                 {
                     StartCoroutine(ApplyDamage(closeHit.collider.gameObject, 1f, false));
                 }
+                else if(HasHitOwnBase(closeHit.collider.tag) && !isMoving)  // B edge case: unit is stuck inside own base, start movement
+                {
+                    isMoving = true;
+                }
             }
             else // B edge case: if is attacking already but hit an enemy - stop movement
             {
                 isMoving = false;
-            }
+            } 
         }
         else // A2: if it was a friendly unit but it's no longer in range, start movement
         {
@@ -168,6 +172,11 @@ public class UnitControls : MonoBehaviour
     private bool HasHitEnemyBase(string tag)
     {
         return tag.Equals("Enemy Base") && !isEnemy || tag.Equals("Player Base") && isEnemy;
+    }
+
+    private bool HasHitOwnBase(string tag)
+    {
+        return tag.Equals("Player Base") && !isEnemy || tag.Equals("Enemy Base") && isEnemy;
     }
 
     IEnumerator ApplyDamage(UnitControls enemy, float cooldown, bool shouldMove)
