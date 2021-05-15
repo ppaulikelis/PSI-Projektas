@@ -10,7 +10,9 @@ public class Age : ScriptableObject
     public Turret turret;
 
     public GameObject superAttackObject;
+
     public Sprite baseSprite;
+    public int baseMaxHealth;
 
     public int experienceNeeded;
 }

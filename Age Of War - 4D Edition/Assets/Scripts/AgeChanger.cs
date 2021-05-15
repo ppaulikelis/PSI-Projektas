@@ -23,10 +23,9 @@ public class AgeChanger : MonoBehaviour
 
                 Age currentAge = ages[currentIndex];
 
-                //GameObject playerBase = GameObject.FindGameObjectWithTag("Player Base");
                 playerBase.GetComponent<SpriteRenderer>().sprite = currentAge.baseSprite;
+                playerBase.GetComponent<Base>().ChangeMaxHealth(currentAge.baseMaxHealth);
 
-                //GameObject unitSpawner = GameObject.Find("Player Unit Spawner");
                 unitSpawner.GetComponent<UnitSpawner>().currentUnits = currentAge.units;
 
                 superAttack.GetComponent<SuperAttack>().superAttackObjectPrefab = currentAge.superAttackObject;

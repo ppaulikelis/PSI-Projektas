@@ -50,4 +50,13 @@ public class Base : MonoBehaviour
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
     }
+
+    public void ChangeMaxHealth(int maxHealth)
+    {
+        float increaseRatio = maxHealth / this.maxHealth;
+        this.maxHealth = maxHealth;
+        healthBar.SetMaxHealth(this.maxHealth);
+        this.currentHealth = (int)(this.currentHealth * increaseRatio);
+        healthBar.SetHealth(this.currentHealth);
+    }
 }

@@ -68,27 +68,28 @@ public class TowerPlacement : MonoBehaviour
         }
     }
 
+    // replaces towers and 1: replaces variables for future not owned turrets 2: updates new turret variables for when turrets are sold
     public void ReplaceTowers(Tower newTower, Turret newTurret)
     {
         this.tower = newTower;
-
         for (int i = 0; i < towerCount; i++)
         {
             this.transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = newTower.artwork;
             this.transform.GetChild(i).position = new Vector3(newTower.xPlacement[i], newTower.yPlacement[i], 0);
         }
+
+        this.turretData = newTurret;
         TurretController[] turrets = this.GetComponentsInChildren<TurretController>();
-        foreach(var turr in turrets)
+        foreach(var turret in turrets)
         {
-            turr.transform.localPosition = Vector2.zero;
-            turr.GetComponentInChildren<TextMesh>().text = newTurret.price.ToString();
-            this.turretData = newTurret;
-            if(!turr.enabled)
+            turret.transform.localPosition = Vector2.zero;
+            turret.GetComponentInChildren<TextMesh>().text = newTurret.price.ToString();
+
+            if(!turret.enabled)
             {
-                turr.turretData = newTurret;
-                turr.UpdateVariables();
-                turr.GetComponent<SpriteRenderer>().sprite = newTurret.artwork;
-                turr.UpdateVariables();
+                turret.turretData = newTurret;
+                turret.UpdateVariables();
+                turret.GetComponent<SpriteRenderer>().sprite = newTurret.artwork;
             }
         }
     }
