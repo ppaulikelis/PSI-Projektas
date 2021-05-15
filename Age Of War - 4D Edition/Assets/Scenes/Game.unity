@@ -458,6 +458,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2093313444 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6882332757689740565, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
+  m_PrefabInstance: {fileID: 6882332758127446487}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2082455818224727748
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1194,7 +1199,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8222551170940511535, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: gold
-      value: 9960
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8222551170940511535, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: goldText
@@ -1202,7 +1207,7 @@ PrefabInstance:
       objectReference: {fileID: 547928152}
     - target: {fileID: 8222551170940511535, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: experience
-      value: 9999
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8222551170940511535, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: experienceText
@@ -1224,6 +1229,10 @@ PrefabInstance:
       propertyPath: bullet
       value: 
       objectReference: {fileID: 705682774261476904, guid: 5558493844fa3e84ca7ee47dd0ae6719, type: 3}
+    - target: {fileID: 9037093142673373362, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
+      propertyPath: enemyBase
+      value: 
+      objectReference: {fileID: 2093313444}
     - target: {fileID: 9037093142673373362, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: towerBase
       value: 
@@ -1248,6 +1257,18 @@ PrefabInstance:
       propertyPath: units.Array.size
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 9037093142673373362, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
+      propertyPath: ages.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 742aa550c5a432e42bc3056e6dd20a4a, type: 2}
+    - target: {fileID: 9037093142673373362, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
+      propertyPath: ages.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1d7eb7007ab194d438c7f97984936174, type: 2}
+    - target: {fileID: 9037093142673373362, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
+      propertyPath: ages.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 89c7065a8b5570145a6e85110fd52599, type: 2}
     - target: {fileID: 9037093142673373362, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: units.Array.data[0]
       value: 

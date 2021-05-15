@@ -59,9 +59,9 @@ public class TowerPlacement : MonoBehaviour
                     tc[i].enabled = false; 
                     tc[i].GetComponentInChildren<MeshRenderer>().enabled = true;
                     tc[i].transform.GetComponent<TurretButton>().enabled = true;
-                    tc[i].transform.GetComponent<SpriteRenderer>().sprite = turretData.artwork;
                     tc[i].transform.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
                     values.gold += turretData.price - (int)(turretData.price * penaltyPercent);
+                    tc[i].UpdateVariables();
                     break;
                 }
             }
@@ -84,13 +84,15 @@ public class TowerPlacement : MonoBehaviour
         {
             turret.transform.localPosition = Vector2.zero;
             turret.GetComponentInChildren<TextMesh>().text = newTurret.price.ToString();
+            turret.turretData = newTurret;
 
-            if(!turret.enabled)
+            if (!turret.enabled)
             {
-                turret.turretData = newTurret;
+                //turret.turretData = newTurret;
                 turret.UpdateVariables();
                 turret.bullet = newTurret.bullet;
                 turret.GetComponent<SpriteRenderer>().sprite = newTurret.artwork;
+                turret.GetComponent<Animator>().runtimeAnimatorController = newTurret.animator;
             }
         }
     }
@@ -113,7 +115,7 @@ public class TowerPlacement : MonoBehaviour
                 newTower.transform.position = new Vector3(tower.xPlacement[towerCount], tower.yPlacement[towerCount], 0);
                 newTower.transform.SetParent(gameObject.transform);
 
-                GameObject turretButton = new GameObject("Button", typeof(SpriteRenderer), typeof(BoxCollider2D), typeof(TurretButton), typeof(TurretController));  // turret creation
+                GameObject turretButton = new GameObject("Button",typeof(Animator), typeof(SpriteRenderer), typeof(BoxCollider2D), typeof(TurretButton), typeof(TurretController));  // turret creation
                 turretButton.transform.SetParent(newTower.transform);
                 SetValues(turretButton);
 

@@ -6,6 +6,7 @@ using UnityEngine;
 public class Turret: ScriptableObject
 {
     public Sprite artwork;
+    public RuntimeAnimatorController animator;
     public GameObject bullet;
 
     public float range;

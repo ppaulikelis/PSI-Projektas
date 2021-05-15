@@ -21,9 +21,10 @@ public class AgeChanger : MonoBehaviour
         if (towerPlacement == null) GameObject.Find("Tower Placement");
     }
 
+    // Changes various age related variables
     public void ChangeAge()
     {
-        if (currentIndex < ages.Length && values.experience >= ages[currentIndex].experienceNeeded)
+        if (currentIndex < ages.Length-1 && values.experience >= ages[currentIndex + 1].experienceNeeded)
         {
             currentIndex++;
 

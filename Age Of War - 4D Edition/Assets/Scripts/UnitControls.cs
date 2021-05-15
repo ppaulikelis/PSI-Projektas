@@ -219,7 +219,7 @@ public class UnitControls : MonoBehaviour
     {
         health -= damage;
         healthBar.SetHealth(health, unitData.health);
-        //animator.SetTrigger("Damaged");   removed red blinking while getting damaged
+        //animator.SetTrigger("Damaged");
     }
 
     // OnMouse enables/disables healthbars on units when mouse is moved on top 
