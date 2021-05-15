@@ -25,16 +25,6 @@ public class Base : MonoBehaviour
 
     private void Update()
     {
-        //FOR TESTING
-        //if (Input.GetKeyDown(KeyCode.LeftArrow) && isPlayer)
-        //{
-        //    TakeDamage(20);
-        //}
-        //else if(Input.GetKeyDown(KeyCode.RightArrow) && !isPlayer)
-        //{
-        //    TakeDamage(20);
-        //}
-
         if (isPlayer && currentHealth <= 0)
         {
             SceneControl.LoadScene("Loser");

@@ -13,25 +13,30 @@ public class AgeChanger : MonoBehaviour
     public GameObject superAttack;
     public GameObject towerPlacement;
 
-    private void Update()
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if (playerBase == null) GameObject.FindGameObjectWithTag("Player Base");
+        if (unitSpawner == null) GameObject.Find("Player Unit Spawner");
+        if (superAttack == null) GameObject.Find("Super Attack Spawner");
+        if (towerPlacement == null) GameObject.Find("Tower Placement");
+    }
+
+    public void ChangeAge()
+    {
+        if (currentIndex < ages.Length && values.experience >= ages[currentIndex].experienceNeeded)
         {
-            if(values.experience >= ages[currentIndex].experienceNeeded)
-            {
-                currentIndex++;
+            currentIndex++;
 
-                Age currentAge = ages[currentIndex];
+            Age currentAge = ages[currentIndex];
 
-                playerBase.GetComponent<SpriteRenderer>().sprite = currentAge.baseSprite;
-                playerBase.GetComponent<Base>().ChangeMaxHealth(currentAge.baseMaxHealth);
+            playerBase.GetComponent<SpriteRenderer>().sprite = currentAge.baseSprite;
+            playerBase.GetComponent<Base>().ChangeMaxHealth(currentAge.baseMaxHealth);
 
-                unitSpawner.GetComponent<UnitSpawner>().currentUnits = currentAge.units;
+            unitSpawner.GetComponent<UnitSpawner>().currentUnits = currentAge.units;
 
-                superAttack.GetComponent<SuperAttack>().superAttackObjectPrefab = currentAge.superAttackObject;
+            superAttack.GetComponent<SuperAttack>().superAttackObjectPrefab = currentAge.superAttackObject;
 
-                towerPlacement.GetComponent<TowerPlacement>().ReplaceTowers(currentAge.tower, currentAge.turret);
-            }
+            towerPlacement.GetComponent<TowerPlacement>().ReplaceTowers(currentAge.tower, currentAge.turret);
         }
     }
 }

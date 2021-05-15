@@ -71,14 +71,14 @@ public class TowerPlacement : MonoBehaviour
     // replaces towers and 1: replaces variables for future not owned turrets 2: updates new turret variables for when turrets are sold
     public void ReplaceTowers(Tower newTower, Turret newTurret)
     {
-        this.tower = newTower;
+        this.tower = newTower;  // tower updates
         for (int i = 0; i < towerCount; i++)
         {
             this.transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = newTower.artwork;
             this.transform.GetChild(i).position = new Vector3(newTower.xPlacement[i], newTower.yPlacement[i], 0);
         }
 
-        this.turretData = newTurret;
+        this.turretData = newTurret;    // turret updates
         TurretController[] turrets = this.GetComponentsInChildren<TurretController>();
         foreach(var turret in turrets)
         {
@@ -89,6 +89,7 @@ public class TowerPlacement : MonoBehaviour
             {
                 turret.turretData = newTurret;
                 turret.UpdateVariables();
+                turret.bullet = newTurret.bullet;
                 turret.GetComponent<SpriteRenderer>().sprite = newTurret.artwork;
             }
         }

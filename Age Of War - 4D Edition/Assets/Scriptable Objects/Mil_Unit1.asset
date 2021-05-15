@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mil_Unit1
   m_EditorClassIdentifier: 
   artwork: {fileID: 21300000, guid: 15d6882eb3903ae4db506201604239e4, type: 3}
-  animator: {fileID: 9100000, guid: b6c6309ab95256d4face312a11253f64, type: 2}
+  animator: {fileID: 9100000, guid: 9213de31bfb8afc4ea8344dece6ddb7d, type: 2}
   isRanged: 1
   health: 30
   damage: 10
