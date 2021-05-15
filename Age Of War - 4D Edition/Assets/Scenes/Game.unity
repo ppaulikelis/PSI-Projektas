@@ -1017,6 +1017,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2479209971070302615, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
+      propertyPath: ages.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2479209971070302615, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
+      propertyPath: ages.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 89c7065a8b5570145a6e85110fd52599, type: 2}
     - target: {fileID: 2751832901539392863, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: m_Name
       value: Enemy AI | Unit Spawner
