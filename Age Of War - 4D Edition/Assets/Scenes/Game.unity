@@ -1165,6 +1165,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 387738430}
     m_Modifications:
+    - target: {fileID: 8179917798393342253, guid: 2853940c31fcf004dbe2e3984d9db4f6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 09a2b1f89ec66a14cae7d30bb8724dfe, type: 3}
+    - target: {fileID: 8179917798393342253, guid: 2853940c31fcf004dbe2e3984d9db4f6, type: 3}
+      propertyPath: m_Color.b
+      value: 0.59401923
+      objectReference: {fileID: 0}
+    - target: {fileID: 8179917798393342253, guid: 2853940c31fcf004dbe2e3984d9db4f6, type: 3}
+      propertyPath: m_Color.g
+      value: 0.66381687
+      objectReference: {fileID: 0}
+    - target: {fileID: 8179917798393342253, guid: 2853940c31fcf004dbe2e3984d9db4f6, type: 3}
+      propertyPath: m_Color.r
+      value: 0.764151
+      objectReference: {fileID: 0}
+    - target: {fileID: 8179917799283866039, guid: 2853940c31fcf004dbe2e3984d9db4f6, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8179917799400291419, guid: 2853940c31fcf004dbe2e3984d9db4f6, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8179917799501871002, guid: 2853940c31fcf004dbe2e3984d9db4f6, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8179917799825697587, guid: 2853940c31fcf004dbe2e3984d9db4f6, type: 3}
       propertyPath: m_Name
       value: Background Objects
@@ -1211,6 +1239,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8179917799825697596, guid: 2853940c31fcf004dbe2e3984d9db4f6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8179917800103754673, guid: 2853940c31fcf004dbe2e3984d9db4f6, type: 3}
+      propertyPath: m_FlipX
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
