@@ -24,13 +24,16 @@ public class EnemyAI : MonoBehaviour
 
     int towerCount = 0;
     int turretCount = 0;
+    int currentAge = 0;
 
+    public GameObject enemyBase;
     public GameObject spawner;
     public Tower tower;
     public GameObject towerBase;
     public GameObject bullet;
     public Turret turretData;
     public Unit[] units;
+    public Age[] ages = new Age[3];
 
     void OnValidate()   // validation of public variables changed in inspector
     {
@@ -59,6 +62,18 @@ public class EnemyAI : MonoBehaviour
         if(cooldown > 0)
         {
             cooldown -= Time.deltaTime;
+        }
+
+        if(currentAge < ages.Length-1 && ages[currentAge + 1].experienceNeeded <= experience)   // change age if possible
+        {
+            currentAge++;
+            Age newAge = ages[currentAge];
+            units = newAge.units;
+            turretData = newAge.turret;
+            tower = newAge.tower;
+            ReplaceTowers();
+            enemyBase.GetComponent<SpriteRenderer>().sprite = newAge.baseSprite;
+            enemyBase.GetComponent<Base>().ChangeMaxHealth(newAge.baseMaxHealth);
         }
     }
 
@@ -109,6 +124,16 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    private void ReplaceTowers()
+    {
+        for (int i = 0; i < towerCount; i++)
+        {
+            GameObject currentTower = towerBase.transform.GetChild(i).gameObject;
+            currentTower.GetComponent<SpriteRenderer>().sprite = tower.artwork;
+            currentTower.transform.position = new Vector2(currentTower.transform.position.x, tower.yPlacement[i]);
+        }
+    }
+
     private int GetIndexFromChances(float[] chances, int defaultIndex = 0)
     {
         float current = UnityEngine.Random.Range(0f, 1f);
@@ -141,7 +166,7 @@ public class EnemyAI : MonoBehaviour
             {
                 gold -= turretData.price;
 
-                GameObject turret = new GameObject("Enemy turret", typeof(SpriteRenderer), typeof(BoxCollider2D), typeof(TurretController));  // turret creation
+                GameObject turret = new GameObject("Enemy turret",typeof(Animator), typeof(SpriteRenderer), typeof(BoxCollider2D), typeof(TurretController));  // turret creation
                 turret.transform.SetParent(towerBase.transform.GetChild(turretCount));
                 TurretController script = turret.GetComponent<TurretController>();  // setting up TurretController script using turretData
                 script.turretData = turretData;
@@ -163,6 +188,22 @@ public class EnemyAI : MonoBehaviour
                 turret.GetComponent<BoxCollider2D>().isTrigger = true;
 
                 turretCount++;
+            }
+
+            else if (gold >= turretData.price)  // replace existing turrets with new ones
+            {
+                TurretController[] tc = towerBase.GetComponentsInChildren<TurretController>();
+                foreach (var controller in tc)
+                {
+                    if (!controller.turretData.Equals(this.turretData))
+                    {
+                        gold -= turretData.price;
+                        gold += controller.turretData.price;
+                        controller.turretData = turretData;
+                        controller.UpdateVariables();
+                        return;
+                    }
+                }
             }
         }
         else

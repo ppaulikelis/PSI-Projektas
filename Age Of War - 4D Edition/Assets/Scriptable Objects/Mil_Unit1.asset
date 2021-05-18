@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 253f00a7d1371f243be586f20d0a3695, type: 3}
+  m_Name: Mil_Unit1
+  m_EditorClassIdentifier: 
+  artwork: {fileID: 21300000, guid: 15d6882eb3903ae4db506201604239e4, type: 3}
+  animator: {fileID: 9100000, guid: 9213de31bfb8afc4ea8344dece6ddb7d, type: 2}
+  isRanged: 1
+  health: 30
+  damage: 10
+  hitboxIncrease: 0.5
+  movementSpeed: 2.2
+  trainingTime: 2
+  cost: 50
+  rewardGold: 60
+  rewardExperience: 4

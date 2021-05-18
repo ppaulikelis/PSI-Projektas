@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class UnitSpawner : MonoBehaviour
 {
+    public Unit[] currentUnits;
+
     Queue<Unit> unitsQueue;
     Unit currentUnit;
     public GameObject values;
@@ -62,12 +64,12 @@ public class UnitSpawner : MonoBehaviour
         }
     }
 
-    public void GenerateUnit(Unit unit) // code to be run when button is pressed
+    public void GenerateUnit(int index) // code to be run when button is pressed
     {
-        if(unitsQueue.Count < 5 && values.GetComponent<Values>().gold >= unit.cost)
+        if(unitsQueue.Count < 5 && values.GetComponent<Values>().gold >= currentUnits[index].cost)
         {
-            values.GetComponent<Values>().gold -= unit.cost;
-            unitsQueue.Enqueue(unit);
+            values.GetComponent<Values>().gold -= currentUnits[index].cost;
+            unitsQueue.Enqueue(currentUnits[index]);
         }
     }
 }

@@ -8,7 +8,6 @@ public class TowerPlacement : MonoBehaviour
     public Tower tower;
     public Values values;
     public Turret turretData;
-    public GameObject bullet;
 
     [Range(0f, 1f)]
     public float penaltyPercent = 0.5f;
@@ -62,8 +61,38 @@ public class TowerPlacement : MonoBehaviour
                     tc[i].transform.GetComponent<TurretButton>().enabled = true;
                     tc[i].transform.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
                     values.gold += turretData.price - (int)(turretData.price * penaltyPercent);
+                    tc[i].UpdateVariables();
                     break;
                 }
+            }
+        }
+    }
+
+    // replaces towers and 1: replaces variables for future not owned turrets 2: updates new turret variables for when turrets are sold
+    public void ReplaceTowers(Tower newTower, Turret newTurret)
+    {
+        this.tower = newTower;  // tower updates
+        for (int i = 0; i < towerCount; i++)
+        {
+            this.transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = newTower.artwork;
+            this.transform.GetChild(i).position = new Vector3(newTower.xPlacement[i], newTower.yPlacement[i], 0);
+        }
+
+        this.turretData = newTurret;    // turret updates
+        TurretController[] turrets = this.GetComponentsInChildren<TurretController>();
+        foreach(var turret in turrets)
+        {
+            turret.transform.localPosition = Vector2.zero;
+            turret.GetComponentInChildren<TextMesh>().text = newTurret.price.ToString();
+            turret.turretData = newTurret;
+
+            if (!turret.enabled)
+            {
+                //turret.turretData = newTurret;
+                turret.UpdateVariables();
+                turret.bullet = newTurret.bullet;
+                turret.GetComponent<SpriteRenderer>().sprite = newTurret.artwork;
+                turret.GetComponent<Animator>().runtimeAnimatorController = newTurret.animator;
             }
         }
     }
@@ -86,7 +115,7 @@ public class TowerPlacement : MonoBehaviour
                 newTower.transform.position = new Vector3(tower.xPlacement[towerCount], tower.yPlacement[towerCount], 0);
                 newTower.transform.SetParent(gameObject.transform);
 
-                GameObject turretButton = new GameObject("Button", typeof(SpriteRenderer), typeof(BoxCollider2D), typeof(TurretButton), typeof(TurretController));  // turret creation
+                GameObject turretButton = new GameObject("Button",typeof(Animator), typeof(SpriteRenderer), typeof(BoxCollider2D), typeof(TurretButton), typeof(TurretController));  // turret creation
                 turretButton.transform.SetParent(newTower.transform);
                 SetValues(turretButton);
 
@@ -119,7 +148,7 @@ public class TowerPlacement : MonoBehaviour
         script.shootPoint = newShootpoint;
         script.shootPoint.localPosition = new Vector2(turretData.shootpointOffsetX, 0);
         script.targetTag = "Enemy";
-        script.bullet = bullet;
+        script.bullet = turretData.bullet;
         script.enabled = false;
        
         turret.transform.localPosition = Vector2.zero;  // moving turret to middle of tower block

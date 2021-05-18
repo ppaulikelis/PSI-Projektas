@@ -5,6 +5,7 @@ using UnityEngine;
 public class TurretController : MonoBehaviour
 {
     public Turret turretData;
+    public Animator animator;
 
     public Transform target;
     public string targetTag;
@@ -36,6 +37,9 @@ public class TurretController : MonoBehaviour
         fireRate = turretData.fireRate;
         force = turretData.force;
         damage = turretData.damage;
+        bullet = turretData.bullet;
+        animator = GetComponent<Animator>();
+        animator.runtimeAnimatorController = turretData.animator;
     }
 
     void UpdateTarget()
@@ -87,9 +91,10 @@ public class TurretController : MonoBehaviour
                 transform.right = turretDirection * -1;
             }
             else transform.right = turretDirection;
-            if(Time.time > nextTimeToFire)
+            if (Time.time > nextTimeToFire)
             {
                 nextTimeToFire = Time.time + 1 / fireRate;
+                animator.SetTrigger("Shoot");
                 Shoot();
             }
         }

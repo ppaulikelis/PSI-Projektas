@@ -25,16 +25,6 @@ public class Base : MonoBehaviour
 
     private void Update()
     {
-        //FOR TESTING
-        //if (Input.GetKeyDown(KeyCode.LeftArrow) && isPlayer)
-        //{
-        //    TakeDamage(20);
-        //}
-        //else if(Input.GetKeyDown(KeyCode.RightArrow) && !isPlayer)
-        //{
-        //    TakeDamage(20);
-        //}
-
         if (isPlayer && currentHealth <= 0)
         {
             SceneControl.LoadScene("Loser");
@@ -49,5 +39,14 @@ public class Base : MonoBehaviour
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
+    }
+
+    public void ChangeMaxHealth(int maxHealth)
+    {
+        float increaseRatio = maxHealth / this.maxHealth;
+        this.maxHealth = maxHealth;
+        healthBar.SetMaxHealth(this.maxHealth);
+        this.currentHealth = (int)(this.currentHealth * increaseRatio);
+        healthBar.SetHealth(this.currentHealth);
     }
 }

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 253f00a7d1371f243be586f20d0a3695, type: 3}
+  m_Name: MA_Unit3
+  m_EditorClassIdentifier: 
+  artwork: {fileID: 21300000, guid: d5673ab25b49b1a40886b945f6c572ce, type: 3}
+  animator: {fileID: 9100000, guid: 3442eaf99f3d37647805725af1a1269f, type: 2}
+  isRanged: 1
+  health: 10
+  damage: 6
+  hitboxIncrease: 0.5
+  movementSpeed: 2
+  trainingTime: 3
+  cost: 35
+  rewardGold: 42
+  rewardExperience: 4
