@@ -275,8 +275,10 @@ MonoBehaviour:
   tower: {fileID: 11400000, guid: 3ca0b50f567c8a3488f1e043332322c6, type: 2}
   values: {fileID: 8222551170940511535}
   turretData: {fileID: 11400000, guid: 6fb9cb08cb4d6164fa50b9804871d8d1, type: 2}
+  uiTowerCost: {fileID: 0}
   penaltyPercent: 0.5
   shouldSpawn: -1
+  towerCount: 0
 --- !u!1 &2751832901539392863
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,6 +432,24 @@ MonoBehaviour:
   unitSpawner: {fileID: 9041870817489560339}
   superAttack: {fileID: 925462142}
   towerPlacement: {fileID: 1624608427361517195}
+  unit1Icon: {fileID: 0}
+  unit1Price: {fileID: 0}
+  unit2Icon: {fileID: 0}
+  unit2Price: {fileID: 0}
+  unit3Icon: {fileID: 0}
+  unit3Price: {fileID: 0}
+  turret1Icon: {fileID: 0}
+  turret1Price: {fileID: 0}
+  turret2Icon: {fileID: 0}
+  turret2Price: {fileID: 0}
+  turret3Icon: {fileID: 0}
+  turret3Price: {fileID: 0}
+  towerIcon: {fileID: 0}
+  towerPrice: {fileID: 0}
+  specialAttackIcon1: {fileID: 0}
+  specialAttackIcon2: {fileID: 0}
+  specialAttackIcon3: {fileID: 0}
+  evolvePrice: {fileID: 0}
 --- !u!1 &6882332757607606045
 GameObject:
   m_ObjectHideFlags: 0

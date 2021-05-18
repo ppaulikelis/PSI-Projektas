@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TowerPlacement : MonoBehaviour
 {
@@ -8,13 +9,14 @@ public class TowerPlacement : MonoBehaviour
     public Tower tower;
     public Values values;
     public Turret turretData;
+    public Text uiTowerCost;
 
     [Range(0f, 1f)]
     public float penaltyPercent = 0.5f;
 
     [HideInInspector]
     public int shouldSpawn = -1;   // -1: no turret buying, 0,1,2: buy turret indexed 0,1,2
-    int towerCount = 0;
+    public int towerCount = 0;
 
 
     void Update()
@@ -128,7 +130,9 @@ public class TowerPlacement : MonoBehaviour
                 text.transform.SetParent(turretButton.transform);
                 text.transform.localPosition = Vector2.zero;
 
-                towerCount++;  
+                towerCount++;
+
+                uiTowerCost.text = tower.cost[towerCount].ToString();
             }
         }
         else
