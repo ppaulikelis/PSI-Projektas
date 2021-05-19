@@ -132,7 +132,8 @@ public class TowerPlacement : MonoBehaviour
 
                 towerCount++;
 
-                uiTowerCost.text = tower.cost[towerCount].ToString();
+                if(towerCount<3) uiTowerCost.text = tower.cost[towerCount].ToString();
+                else uiTowerCost.text = "---";
             }
         }
         else

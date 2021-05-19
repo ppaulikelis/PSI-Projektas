@@ -78,7 +78,10 @@ public class AgeChanger : MonoBehaviour
             turret3Price.text = currentAge.turret.price.ToString();
             //Towers
             towerIcon.sprite = currentAge.tower.artwork;
-            towerPrice.text = currentAge.tower.cost[towerPlacement.GetComponent<TowerPlacement>().towerCount].ToString();
+            int index = towerPlacement.GetComponent<TowerPlacement>().towerCount;
+            if (index < 3) towerPrice.text = currentAge.tower.cost[index].ToString();
+            else towerPrice.text = "---";
+
             //Specials
             specialAttackIcon1.sprite = currentAge.superAttackObject.GetComponent<SpriteRenderer>().sprite;
             specialAttackIcon2.sprite = currentAge.superAttackObject.GetComponent<SpriteRenderer>().sprite;

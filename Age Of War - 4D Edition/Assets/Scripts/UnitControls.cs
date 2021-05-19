@@ -17,6 +17,8 @@ public class UnitControls : MonoBehaviour
     public bool isAttacking = false;
 
     private Animator animator;
+    public float lastWalk = 0;
+
     private bool isRanged;
     private int health;
     private int damage;
@@ -76,7 +78,17 @@ public class UnitControls : MonoBehaviour
     {
         // animations
         animator.SetBool("Attacking", isAttacking);
-        animator.SetBool("Walking", isMoving);
+        if(lastWalk <= 0)
+        {
+            lastWalk = 0.05f;
+            animator.SetBool("Walking", isMoving);
+        }
+        if(lastWalk > 0)
+        {
+            lastWalk -= Time.deltaTime;
+        }
+     
+      
 
         // death
         if (health <= 0)
