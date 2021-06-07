@@ -24,7 +24,7 @@ public class UnitControls : MonoBehaviour
     private int damage;
     private float hitboxIncrease;
     private float movementSpeed;
-    private int trainingTime;
+    private float trainingTime;
     private int cost;
     private int rewardGold;
     private int rewardExperience;

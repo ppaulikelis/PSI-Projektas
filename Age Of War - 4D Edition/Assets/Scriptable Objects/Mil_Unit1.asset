@@ -15,11 +15,11 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: 15d6882eb3903ae4db506201604239e4, type: 3}
   animator: {fileID: 9100000, guid: 9213de31bfb8afc4ea8344dece6ddb7d, type: 2}
   isRanged: 1
-  health: 30
-  damage: 10
+  health: 150
+  damage: 25
   hitboxIncrease: 0.5
-  movementSpeed: 2.2
+  movementSpeed: 1.8
   trainingTime: 2
-  cost: 50
-  rewardGold: 60
-  rewardExperience: 4
+  cost: 150
+  rewardGold: 165
+  rewardExperience: 165

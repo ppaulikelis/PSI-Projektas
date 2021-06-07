@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 253f00a7d1371f243be586f20d0a3695, type: 3}
   m_Name: Mil_Unit3
   m_EditorClassIdentifier: 
-  artwork: {fileID: 21300000, guid: bcf940810e512b348941db61c9893185, type: 3}
-  animator: {fileID: 9100000, guid: eab6c88a8d105ff459e1d6373debf6a7, type: 2}
-  isRanged: 0
-  health: 30
-  damage: 20
+  artwork: {fileID: 21300000, guid: 26eb3aab23f778b419cd2ecd838faff2, type: 3}
+  animator: {fileID: 9100000, guid: 4c27eb599d25e6e4c8a7e6a4c5848705, type: 2}
+  isRanged: 1
+  health: 300
+  damage: 30
   hitboxIncrease: 0.5
-  movementSpeed: 2.2
-  trainingTime: 3
-  cost: 75
-  rewardGold: 87
-  rewardExperience: 6
+  movementSpeed: 1.5
+  trainingTime: 8
+  cost: 350
+  rewardGold: 350
+  rewardExperience: 350

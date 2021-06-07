@@ -547,7 +547,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 1
-  maxHealth: 100
+  maxHealth: 150
   currentHealth: 0
   healthBar: {fileID: 0}
 --- !u!61 &1467129487
@@ -673,7 +673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 0
-  maxHealth: 100
+  maxHealth: 150
   currentHealth: 0
   healthBar: {fileID: 0}
 --- !u!61 &1855387045
@@ -785,7 +785,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4313df9e709b9144a459be546170ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gold: 60
+  gold: 50
   experience: 0
   goldText: {fileID: 0}
   experienceText: {fileID: 0}

@@ -136,4 +136,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 9
   targetTag: 
-  damage: 50
+  damage: 125
