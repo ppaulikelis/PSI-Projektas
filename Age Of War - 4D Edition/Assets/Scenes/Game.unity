@@ -725,7 +725,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 134360229}
     - target: {fileID: 6788979025786455990, guid: e1986e648a78aa848846ead63b944d36, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788979025786455990, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8872359140941185753, guid: e1986e648a78aa848846ead63b944d36, type: 3}
+      propertyPath: m_Value
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

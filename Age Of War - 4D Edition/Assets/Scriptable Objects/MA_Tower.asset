@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MA_Tower
   m_EditorClassIdentifier: 
   artwork: {fileID: 21300000, guid: 7844b0970f479934092f6f87c411ef25, type: 3}
-  cost: 320000007d0000002c010000
+  cost: 32000000c800000090010000
   yPlacement:
   - -0.8
   - 1

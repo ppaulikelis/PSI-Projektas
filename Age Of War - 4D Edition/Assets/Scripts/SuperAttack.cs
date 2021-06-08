@@ -24,7 +24,7 @@ public class SuperAttack : MonoBehaviour
     {
         GameObject a = Instantiate(superAttackObjectPrefab) as GameObject;
         a.GetComponent<SuperAttackObject>().targetTag = targetTag;
-        a.transform.position = new Vector2(Random.Range(-5, 35), 10);
+        a.transform.position = new Vector2(Random.Range(-9, 39), 10);
     }
 
     IEnumerator ObjectWave()
