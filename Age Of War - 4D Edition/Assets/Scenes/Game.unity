@@ -444,6 +444,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1124175814 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 123032619, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
+  m_PrefabInstance: {fileID: 6882332758127446487}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1187744690 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8611131653260890554, guid: e1986e648a78aa848846ead63b944d36, type: 3}
@@ -631,6 +636,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 387738431}
+    - target: {fileID: 605891958, guid: e1986e648a78aa848846ead63b944d36, type: 3}
+      propertyPath: backgroundMusic
+      value: 
+      objectReference: {fileID: 1124175814}
     - target: {fileID: 2082455818217197162, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
