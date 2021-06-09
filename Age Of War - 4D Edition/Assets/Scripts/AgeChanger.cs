@@ -93,6 +93,7 @@ public class AgeChanger : MonoBehaviour
             catch(Exception e)
             {
                 evolvePrice.text = "---";
+                Debug.Log("End of Ages" + e.ToString());
             }
         }
     }

@@ -20,5 +20,5 @@ MonoBehaviour:
   turret: {fileID: 11400000, guid: 4545c7de91742ac4ca35010143eb99cf, type: 2}
   superAttackObject: {fileID: 1131110790296284848, guid: 50fff06f4cf02c04f8e737817647846f, type: 3}
   baseSprite: {fileID: 21300000, guid: 8be15cb8cdf341b49875e4fbdff2d194, type: 3}
-  baseMaxHealth: 400
+  baseMaxHealth: 450
   experienceNeeded: 1250

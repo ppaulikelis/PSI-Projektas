@@ -53,7 +53,7 @@ public class EnemyAI : MonoBehaviour
     void Start()
     {
         // starting automatic increase of gold/experience and unit spawning
-        StartCoroutine(IncreaseValues(1, 2, 1f));
+        StartCoroutine(IncreaseValues(3, 3, 1f));
         StartCoroutine(EnemySpawner(spawnCooldown));
     }
 

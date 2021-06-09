@@ -16,7 +16,7 @@ MonoBehaviour:
   animator: {fileID: 9100000, guid: 479c0613e2f0f024d8b94b196030e8fc, type: 2}
   isRanged: 0
   health: 60
-  damage: 10
+  damage: 20
   hitboxIncrease: 0.5
   movementSpeed: 1.8
   trainingTime: 1.5
