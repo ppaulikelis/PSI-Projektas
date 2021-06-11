@@ -21,7 +21,7 @@ public class TurretController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UpdateVariables();
+        //UpdateVariables();
 
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
         if (targetTag.Equals("Friendly"))
