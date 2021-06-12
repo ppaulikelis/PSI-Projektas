@@ -1,18 +1,18 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ObjectToButton: MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class ObjectToButton: MonoBehaviour, IPointerClickHandler//, IPointerEnterHandler, IPointerExitHandler
 {
-    TurretPlacement turret;
+    TurretPlacement turretPlacement;
 
     void Start()
     {
-        turret = FindObjectOfType<TurretPlacement>();
+        turretPlacement = FindObjectOfType<TurretPlacement>();
         AddEventSystem();
     }
 
 
-    public void OnPointerEnter(PointerEventData eventData)
+    /*public void OnPointerEnter(PointerEventData eventData)
     {
         turret.isOnGreen = true;
     }
@@ -20,12 +20,57 @@ public class ObjectToButton: MonoBehaviour, IPointerClickHandler, IPointerEnterH
     public void OnPointerExit(PointerEventData eventData)
     {
         turret.isOnGreen = false;
-    }
+    }*/
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Values values = turret.values;
-        if (turret.isBuilding)
+        switch (gameObject.tag)
+        {
+            case "Buy Button":
+                turretPlacement.isBuying = false;
+                TurretController[] controllers = FindObjectsOfType<TurretController>();
+                for (int i = 0; i < controllers.Length; i++)
+                {
+                    if (controllers[i].enabled == false)
+                    {
+                        if(turretPlacement.values.gold >= controllers[i].turretData.price)
+                        {
+                            turretPlacement.values.gold -= controllers[i].turretData.price;
+                            controllers[i].enabled = true;
+                            controllers[i].transform.SetParent(transform.parent);
+                            controllers[i].transform.localPosition = Vector2.zero;
+                            gameObject.SetActive(false);
+                            turretPlacement.newTurret = null;
+                            int builtIndex = int.Parse(transform.parent.name.Substring(5, 1));
+                            turretPlacement.isBuilt[builtIndex] = true;
+                            break;
+                        }
+                        else
+                        {
+                            Destroy(controllers[i].gameObject);
+                            Debug.Log("Not enough gold to buy turret");
+                        }
+                    }
+                }
+                break;
+            case "Sell Button":
+                turretPlacement.isSelling = false;
+                TurretController soldController = transform.parent.GetComponentInChildren<TurretController>();
+                turretPlacement.values.gold += soldController.turretData.price - (int)(soldController.turretData.price * turretPlacement.penaltyPercent);
+                Destroy(soldController.gameObject);
+                int sellIndex = int.Parse(transform.parent.name.Substring(5, 1));
+                gameObject.SetActive(false);
+                turretPlacement.isBuilt[sellIndex] = false;
+                break;
+            default:
+                Debug.LogError("Not defined action (tag missing in " + gameObject.name+ " object)");
+                break;
+        }
+
+
+
+        /*Values values = turret.values;
+        if (turret.isBuying)
         {
             TurretController[] controllers = FindObjectsOfType<TurretController>();
             foreach(var contr in controllers)
@@ -38,7 +83,7 @@ public class ObjectToButton: MonoBehaviour, IPointerClickHandler, IPointerEnterH
                         contr.enabled = true;
                         contr.transform.SetParent(transform.parent);
                         contr.transform.localPosition = Vector2.zero;
-                        Destroy(gameObject);
+                        gameObject.SetActive(false);
                         turret.SetGreenBoxEnable(false);
                         break;
                     }
@@ -53,8 +98,8 @@ public class ObjectToButton: MonoBehaviour, IPointerClickHandler, IPointerEnterH
             }
 
             turret.isOnGreen = false;
-            turret.isBuilding = false;
-        } 
+            turret.isBuying = false;
+        } */
     }
 
     void AddEventSystem()

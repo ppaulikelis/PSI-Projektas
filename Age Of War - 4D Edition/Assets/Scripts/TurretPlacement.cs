@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class TurretPlacement : MonoBehaviour
 {
-    public bool isBuilding = false;
-    public bool isOnGreen = false;
+    [HideInInspector]
+    public bool isBuying = false;
+    [HideInInspector]
     public bool isSelling = false;
-    public Turret[] turretsData;
-    public GameObject newTurret;
-    public GameObject bullet;
 
-    public int index;
-    public Vector2 mousePosition;
+    [Range(0f, 1f)]
+    public float penaltyPercent = 0.25f;
+    public Turret[] turretsData;
+
+    [HideInInspector]
+    public bool[] isBuilt = new bool[3] { false, false, false };
+    [HideInInspector]
+    public GameObject newTurret;
+    [HideInInspector]
+    int index;
+    Vector2 mousePosition;
 
     public Values values;
 
@@ -23,35 +30,30 @@ public class TurretPlacement : MonoBehaviour
 
     private void Update()
     {
-        if(isBuilding)
+        if(isBuying)    // "building" mode
         {
-            mousePosition = Input.mousePosition;
-            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            isSelling = false;
 
+            mousePosition = Input.mousePosition;    // creates an inactive turret object that follows mouse till it's placed 
+            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
             if(newTurret == null)
             {
-                SetGreenBoxEnable(true);
                 newTurret = new GameObject("Turret", typeof(TurretController), typeof(SpriteRenderer), typeof(Animator));
-                SetValues(newTurret);
+                SetupTurret(newTurret);
                 newTurret.GetComponent<SpriteRenderer>().sortingOrder = 2;
             }
-
-            else if(Input.GetMouseButtonDown(0) && !isOnGreen)
-            {
-                SetGreenBoxEnable(false);
-                isBuilding = false;
-                Destroy(newTurret);
-                return;
-            }
             newTurret.transform.position = mousePosition;
-        } 
-        else
-        {
-            newTurret = null;
         }
+        if(isSelling)   // "selling" mode
+        {
+            isBuying = false;
+        }
+        SetGreenBoxEnable(isBuying);
+        SetRedBoxEnable(isSelling);
     }
 
-    private void SetValues(GameObject turret)
+    // sets up turret object with values from turretData[index]
+    private void SetupTurret(GameObject turret)
     {
         TurretController script = turret.GetComponent<TurretController>();  // script setup
         script.turretData = turretsData[index];
@@ -65,29 +67,54 @@ public class TurretPlacement : MonoBehaviour
         script.enabled = false;
     }
 
+    // turns on all green boxes in spots where turrets can be bought
     public void SetGreenBoxEnable(bool isOn)
     {
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
-            GameObject greenBox = gameObject.transform.GetChild(i).GetChild(0).gameObject;
-            if(greenBox.name.Equals("Green Box(Clone)"))
+            if(!isBuilt[i])
             {
-                greenBox.SetActive(isOn);
+                GameObject greenBox = gameObject.transform.GetChild(i).GetChild(0).gameObject;
+                if (greenBox.name.Equals("Green Box(Clone)"))
+                {
+                    greenBox.SetActive(isOn);
+                }
             }
         }
     }
 
-    public void BuildTurret(int index)
+    // turns on all red boxes in spots where turrets can be sold
+    public void SetRedBoxEnable(bool isOn)
     {
-        if(values.gold >= turretsData[index].price)
+        for (int i = 0; i < gameObject.transform.childCount; i++)
         {
-            Debug.Log("byin");
-            this.index = index;
-            isBuilding = true;
+            if(isBuilt[i])
+            {
+                GameObject greenBox = gameObject.transform.GetChild(i).GetChild(1).gameObject;
+                if (greenBox.name.Equals("Red Box(Clone)"))
+                {
+                    greenBox.SetActive(isOn);
+                }
+            }
         }
     }
 
-    public void SellTurret()
+    // enters "buying" mode with UI button
+    public void BuyButtonClick(int index)
+    {
+        if(values.gold >= turretsData[index].price)
+        {
+            this.index = index;
+            isBuying = true;
+        }
+        else
+        {
+            Debug.Log("Not enough gold to buy turret");
+        }
+    }
+
+    // enters "selling" mode with UI button
+    public void SellButtonClick()
     {
         isSelling = true;
     }

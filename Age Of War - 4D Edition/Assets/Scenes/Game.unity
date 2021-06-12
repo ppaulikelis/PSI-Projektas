@@ -604,15 +604,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb4f02b201de0da49b7041313c46f2bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBuilding: 0
-  isOnGreen: 0
+  isBuying: 0
   isSelling: 0
+  penaltyPercent: 0.25
   turretsData:
   - {fileID: 11400000, guid: 6fb9cb08cb4d6164fa50b9804871d8d1, type: 2}
+  isBuilt: 000000
   newTurret: {fileID: 0}
-  bullet: {fileID: 0}
-  index: 0
-  mousePosition: {x: 0, y: 0}
   values: {fileID: 0}
 --- !u!114 &1915276234 stripped
 MonoBehaviour:
@@ -650,7 +648,15 @@ PrefabInstance:
     - target: {fileID: 2082455818217197162, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1687120018}
+      objectReference: {fileID: 1884385274}
+    - target: {fileID: 2082455818217197162, guid: e1986e648a78aa848846ead63b944d36, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SellButtonClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 2082455818217197162, guid: e1986e648a78aa848846ead63b944d36, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TurretPlacement, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 2082455818263358906, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -722,10 +728,14 @@ PrefabInstance:
     - target: {fileID: 2082455819043477413, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1884385274}
     - target: {fileID: 2082455819043477413, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: BuyButtonClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 2082455819043477413, guid: e1986e648a78aa848846ead63b944d36, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TurretPlacement, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2082455819249808869, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -742,10 +752,14 @@ PrefabInstance:
     - target: {fileID: 2082455819896385377, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1884385274}
     - target: {fileID: 2082455819896385377, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: BuyButtonClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 2082455819896385377, guid: e1986e648a78aa848846ead63b944d36, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TurretPlacement, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2082455819896385383, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_IsActive
@@ -765,7 +779,7 @@ PrefabInstance:
       objectReference: {fileID: 1884385274}
     - target: {fileID: 2082455820076629399, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BuildTurret
+      value: BuyButtonClick
       objectReference: {fileID: 0}
     - target: {fileID: 2082455820076629399, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -866,6 +880,10 @@ PrefabInstance:
       propertyPath: uiTowerCost
       value: 
       objectReference: {fileID: 535911965}
+    - target: {fileID: 1687120018, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
+      propertyPath: redBoxPrefab
+      value: 
+      objectReference: {fileID: 1520473266762996578, guid: 5922837b5fa73684cb6dbc20e406bb55, type: 3}
     - target: {fileID: 1687120018, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: greenBoxPrefab
       value: 

@@ -11,65 +11,12 @@ public class TowerPlacement : MonoBehaviour
     public Turret turretData;
     public Text uiTowerCost;
     public GameObject greenBoxPrefab;
-
-    [Range(0f, 1f)]
-    public float penaltyPercent = 0.5f;
+    public GameObject redBoxPrefab;
 
     [HideInInspector]
-    public int shouldSpawn = -1;   // -1: no turret buying, 0,1,2: buy turret indexed 0,1,2
     public int towerCount = 0;
 
 
-    void Update()
-    {
-        /*if(shouldSpawn > -1)
-        {
-            BuyTurret(shouldSpawn);
-            shouldSpawn = -1;
-        }*/
-    }
-
-    // buys tower if conditions are met at index (where 0-bottom,1-middle,2-top)
-    /*public void BuyTurret(int index)
-    {
-        if(index < 0 || index > 2)
-        {
-            Debug.Log("Wrong index in BuyTurret(index)");
-            return;
-        }
-        TurretController[] tc = this.GetComponentsInChildren<TurretController>();   // gets all turretControllers (even if they're not enabled)
-        if(values.gold >= turretData.price && tc.Length > index && tc[index].enabled == false)
-        {
-            // add gold, remove "click-icon-to-buy", remove price text, make it fully visible, enable it
-            values.gold -= turretData.price;
-            tc[index].transform.GetComponent<TurretButton>().enabled = false;
-            tc[index].GetComponentInChildren<MeshRenderer>().enabled = false;
-            tc[index].transform.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-            tc[index].enabled = true;
-        }
-    }*/
-
-    // sells highest tower and gives back gold with penalty
-    /*public void SellTurret()
-    {
-        TurretController[] tc = this.GetComponentsInChildren<TurretController>();
-        if(tc.Length > 0)
-        {
-            for (int i = tc.Length-1; i >= 0; i--)
-            {
-                if (tc[i].enabled == true)
-                {
-                    tc[i].enabled = false; 
-                    tc[i].GetComponentInChildren<MeshRenderer>().enabled = true;
-                    tc[i].transform.GetComponent<TurretButton>().enabled = true;
-                    tc[i].transform.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
-                    values.gold += turretData.price - (int)(turretData.price * penaltyPercent);
-                    tc[i].UpdateVariables();
-                    break;
-                }
-            }
-        }
-    }*/
 
     // replaces towers and 1: replaces variables for future not owned turrets 2: updates new turret variables for when turrets are sold
     public void ReplaceTowers(Tower newTower, Turret newTurret)
@@ -121,9 +68,11 @@ public class TowerPlacement : MonoBehaviour
 
                 GameObject greenBox = Instantiate(greenBoxPrefab,newTower.transform);
                 greenBox.SetActive(false);
-                
+                GameObject redBox = Instantiate(redBoxPrefab, newTower.transform);
+                redBox.SetActive(false);
 
-                if(towerCount<3) uiTowerCost.text = tower.cost[towerCount].ToString();
+
+                if (towerCount<3) uiTowerCost.text = tower.cost[towerCount].ToString();
                 else uiTowerCost.text = "---";
             }
         }
