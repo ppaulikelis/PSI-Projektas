@@ -12,6 +12,7 @@ public class TurretPlacement : MonoBehaviour
     [Range(0f, 1f)]
     public float penaltyPercent = 0.25f;
     public Turret[] turretsData;
+    public GameObject[] buttons = new GameObject[4];
 
     [HideInInspector]
     public bool[] isBuilt = new bool[3] { false, false, false };
@@ -32,9 +33,10 @@ public class TurretPlacement : MonoBehaviour
     {
         if(isBuying)    // "building" mode
         {
+            SetCancelEnable(true);
             isSelling = false;
 
-            mousePosition = Input.mousePosition;    // creates an inactive turret object that follows mouse till it's placed 
+            mousePosition = Input.mousePosition;    // creates an inactive turret object that follows mouse till it's placed or canceled
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
             if(newTurret == null)
             {
@@ -46,6 +48,7 @@ public class TurretPlacement : MonoBehaviour
         }
         if(isSelling)   // "selling" mode
         {
+            SetCancelEnable(true);
             isBuying = false;
         }
         SetGreenBoxEnable(isBuying);
@@ -83,6 +86,28 @@ public class TurretPlacement : MonoBehaviour
         }
     }
 
+    // cancels all actions (buying mode, selling mode)
+    public void CancelActions()
+    {
+        isBuying = false;
+        isSelling = false;
+        if(newTurret != null)
+        {
+            newTurret = null;
+        }
+        SetCancelEnable(false);
+    }
+
+    // toggles buying buttons/cancel button visibility
+    void SetCancelEnable(bool isOn)
+    {
+        for (int i = 0; i < buttons.Length-1; i++)
+        {
+            buttons[i].SetActive(!isOn);
+        }
+        buttons[buttons.Length - 1].SetActive(isOn);
+    }
+
     // turns on all red boxes in spots where turrets can be sold
     public void SetRedBoxEnable(bool isOn)
     {
@@ -117,5 +142,34 @@ public class TurretPlacement : MonoBehaviour
     public void SellButtonClick()
     {
         isSelling = true;
+    }
+
+    public void CancelButtonClick()
+    {
+        CancelActions();
+    }
+
+    public void ReplaceTurrets(Turret newTurret)
+    {
+        for (int i = 0; i < turretsData.Length; i++)
+        {
+            turretsData[i] = newTurret;
+        }
+        //TurretController[] turrets = this.GetComponentsInChildren<TurretController>();
+        /*foreach (var turret in turrets)
+        {
+            //turret.transform.localPosition = Vector2.zero;
+            //turret.GetComponentInChildren<TextMesh>().text = newTurret.price.ToString();
+            //turret.turretData = newTurret;
+
+            if (!turret.enabled)
+            {
+                //turret.turretData = newTurret;
+                turret.UpdateVariables();
+                turret.bullet = newTurret.bullet;
+                turret.GetComponent<SpriteRenderer>().sprite = newTurret.artwork;
+                turret.GetComponent<Animator>().runtimeAnimatorController = newTurret.animator;
+            }
+        }*/
     }
 }

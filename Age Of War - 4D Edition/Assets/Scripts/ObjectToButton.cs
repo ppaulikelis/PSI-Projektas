@@ -11,37 +11,24 @@ public class ObjectToButton: MonoBehaviour, IPointerClickHandler//, IPointerEnte
         AddEventSystem();
     }
 
-
-    /*public void OnPointerEnter(PointerEventData eventData)
-    {
-        turret.isOnGreen = true;
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        turret.isOnGreen = false;
-    }*/
-
     public void OnPointerClick(PointerEventData eventData)
     {
         switch (gameObject.tag)
         {
             case "Buy Button":
-                turretPlacement.isBuying = false;
-                TurretController[] controllers = FindObjectsOfType<TurretController>();
+                TurretController[] controllers = FindObjectsOfType<TurretController>(); // finds all controllers and works with inactive controller (the turret object that follow the mouse)
                 for (int i = 0; i < controllers.Length; i++)
                 {
                     if (controllers[i].enabled == false)
                     {
                         if(turretPlacement.values.gold >= controllers[i].turretData.price)
                         {
-                            turretPlacement.values.gold -= controllers[i].turretData.price;
-                            controllers[i].enabled = true;
+                            turretPlacement.values.gold -= controllers[i].turretData.price; // taking away gold
+                            controllers[i].enabled = true;  // enabling turret and moving to middle of tower
                             controllers[i].transform.SetParent(transform.parent);
                             controllers[i].transform.localPosition = Vector2.zero;
-                            gameObject.SetActive(false);
-                            turretPlacement.newTurret = null;
-                            int builtIndex = int.Parse(transform.parent.name.Substring(5, 1));
+                            gameObject.SetActive(false); // turning off green box
+                            int builtIndex = int.Parse(transform.parent.name.Substring(5, 1));  // keeping track of built turrets in turretPlacement script bool array isBuilt
                             turretPlacement.isBuilt[builtIndex] = true;
                             break;
                         }
@@ -52,15 +39,16 @@ public class ObjectToButton: MonoBehaviour, IPointerClickHandler//, IPointerEnte
                         }
                     }
                 }
+                turretPlacement.CancelActions();
                 break;
             case "Sell Button":
-                turretPlacement.isSelling = false;
-                TurretController soldController = transform.parent.GetComponentInChildren<TurretController>();
-                turretPlacement.values.gold += soldController.turretData.price - (int)(soldController.turretData.price * turretPlacement.penaltyPercent);
-                Destroy(soldController.gameObject);
-                int sellIndex = int.Parse(transform.parent.name.Substring(5, 1));
-                gameObject.SetActive(false);
+                TurretController soldController = transform.parent.GetComponentInChildren<TurretController>();  // finds controller that has to be sold (the one with clicked red box)
+                turretPlacement.values.gold += soldController.turretData.price - (int)(soldController.turretData.price * turretPlacement.penaltyPercent);   // take away gold
+                Destroy(soldController.gameObject); // destroy sold controller
+                gameObject.SetActive(false); // turning off red box
+                int sellIndex = int.Parse(transform.parent.name.Substring(5, 1));   // keeping track of built turrets in isBuilt array
                 turretPlacement.isBuilt[sellIndex] = false;
+                turretPlacement.CancelActions();
                 break;
             default:
                 Debug.LogError("Not defined action (tag missing in " + gameObject.name+ " object)");
