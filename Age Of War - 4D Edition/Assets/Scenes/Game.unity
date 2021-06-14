@@ -1113,7 +1113,7 @@ PrefabInstance:
       objectReference: {fileID: 1953447926}
     - target: {fileID: 8222551170940511535, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: gold
-      value: 10000
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8222551170940511535, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: goldText
@@ -1121,7 +1121,7 @@ PrefabInstance:
       objectReference: {fileID: 547928152}
     - target: {fileID: 8222551170940511535, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: experience
-      value: 10000
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8222551170940511535, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: experienceText
@@ -1130,6 +1130,10 @@ PrefabInstance:
     - target: {fileID: 8571162416980300483, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: m_Name
       value: Game Objects
+      objectReference: {fileID: 0}
+    - target: {fileID: 9037093142673373362, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
+      propertyPath: towerTurretSpawnChance
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
