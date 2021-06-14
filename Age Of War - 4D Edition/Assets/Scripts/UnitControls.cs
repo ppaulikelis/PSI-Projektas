@@ -17,7 +17,8 @@ public class UnitControls : MonoBehaviour
     public bool isAttacking = false;
 
     private Animator animator;
-    public float lastWalk = 0;
+    //public float lastWalk = 0;
+    public UnitControls closeFriendlyController;
 
     private bool isRanged;
     private int health;
@@ -77,7 +78,7 @@ public class UnitControls : MonoBehaviour
     void Update()
     {
         // animations
-        animator.SetBool("Attacking", isAttacking);
+        /*animator.SetBool("Attacking", isAttacking);
         if(lastWalk <= 0)
         {
             lastWalk = 0.05f;
@@ -86,10 +87,10 @@ public class UnitControls : MonoBehaviour
         if(lastWalk > 0)
         {
             lastWalk -= Time.deltaTime;
-        }
+        }*/
+        animator.SetBool("Attacking", isAttacking);
+        animator.SetBool("Walking", isMoving);
      
-      
-
         // death
         if (health <= 0)
         {
@@ -112,7 +113,16 @@ public class UnitControls : MonoBehaviour
         {
             transform.Translate(Vector2.right * Time.deltaTime * movementSpeed * isEnemyInt);
         }
-     
+        if (closeFriendlyController != null)
+        {
+            movementSpeed = closeFriendlyController.movementSpeed;
+        }
+        else
+        {
+            movementSpeed = unitData.movementSpeed;
+        }
+
+
 
         // combat
         RaycastHit2D closeHit = Physics2D.Raycast(transform.position + new Vector3( (1.01f + hitboxIncrease) / 2 * isEnemyInt, 0, 0),
@@ -123,6 +133,7 @@ public class UnitControls : MonoBehaviour
         {
             if (HasHitFriendly(closeHit.collider.tag))  // A: if it was a friendly unit, stop movement
             {
+                closeFriendlyController = closeHit.collider.GetComponent<UnitControls>();
                 isMoving = false;
             }
             else if (!isAttacking) // B: else it is some sort of enemy
@@ -195,16 +206,16 @@ public class UnitControls : MonoBehaviour
     {
         isMoving = shouldMove;
         isAttacking = true;
+        yield return new WaitForSeconds(0.5f);
         while (enemy != null)
         {
-            yield return new WaitForSeconds(cooldown);
             if (gameObject != null && enemy != null)
             {
                 enemy.health -= damage;
                 enemy.healthBar.SetHealth(enemy.health, enemy.unitData.health);
                 enemy.animator.SetTrigger("Damaged");
             }
-    
+            yield return new WaitForSeconds(cooldown);
         }
         isMoving = true;
         isAttacking = false;
@@ -215,11 +226,12 @@ public class UnitControls : MonoBehaviour
     {
         isMoving = shouldMove;
         isAttacking = true;
+        yield return new WaitForSeconds(0.5f);
         while (gameObject != null && enemyBase != null)
         {
-            yield return new WaitForSeconds(cooldown);
             Base baseScript = enemyBase.GetComponent<Base>();
             baseScript.TakeDamage(damage);
+            yield return new WaitForSeconds(cooldown);
         }
         isMoving = true;
         isAttacking = false;
@@ -233,6 +245,8 @@ public class UnitControls : MonoBehaviour
         healthBar.SetHealth(health, unitData.health);
         //animator.SetTrigger("Damaged");
     }
+
+    public void AnimationAttack() { }   //empty for now, can be used for sounds/particles, triggers every half of animation (during attack moment)        
 
     // OnMouse enables/disables healthbars on units when mouse is moved on top 
     private void OnMouseEnter()

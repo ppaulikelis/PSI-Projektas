@@ -1113,7 +1113,7 @@ PrefabInstance:
       objectReference: {fileID: 1953447926}
     - target: {fileID: 8222551170940511535, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: gold
-      value: 50
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 8222551170940511535, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: goldText
@@ -1121,7 +1121,7 @@ PrefabInstance:
       objectReference: {fileID: 547928152}
     - target: {fileID: 8222551170940511535, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: experience
-      value: 0
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 8222551170940511535, guid: 3ecfedc98e9a2a549946204d3e508e3a, type: 3}
       propertyPath: experienceText
