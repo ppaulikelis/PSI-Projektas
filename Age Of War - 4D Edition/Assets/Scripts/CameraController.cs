@@ -7,21 +7,17 @@ public class CameraController : MonoBehaviour
     public float panSpeed = 20f;
     public float panBorderThickness = 10f;
     public float xLimit = 12f;
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
 
     // Update is called once per frame
     void Update()
     {
         Vector3 pos = transform.position;
 
-        if (Input.GetKey("d") || Input.mousePosition.x >= Screen.width - panBorderThickness)
+        if (Input.mousePosition.x >= Screen.width - panBorderThickness && Input.mousePosition.y <= Screen.height - 150 && Input.mousePosition.y >= 80)
         {
             pos.x += panSpeed * Time.deltaTime; 
         }
-        if (Input.GetKey("a") || Input.mousePosition.x <= panBorderThickness)
+        if (Input.mousePosition.x <= panBorderThickness && Input.mousePosition.y <= Screen.height - 150 && Input.mousePosition.y >= 80)
         {
             pos.x -= panSpeed * Time.deltaTime;
         }
