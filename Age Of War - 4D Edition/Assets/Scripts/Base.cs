@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Base : MonoBehaviour
 {
@@ -8,11 +9,13 @@ public class Base : MonoBehaviour
     public int currentHealth;
 
     public HealthBar healthBar;
+    public Text value;
 
     private void Start()
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        value.text = string.Format("{0} / {1}", currentHealth, maxHealth);
         if(isPlayer)
         {
             gameObject.tag = "Player Base";
@@ -39,6 +42,7 @@ public class Base : MonoBehaviour
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
+        value.text = string.Format("{0} / {1}", currentHealth, maxHealth);
     }
 
     public void ChangeMaxHealth(int maxHealth)
@@ -48,5 +52,6 @@ public class Base : MonoBehaviour
         healthBar.SetMaxHealth(this.maxHealth);
         this.currentHealth = (int)(this.currentHealth * increaseRatio);
         healthBar.SetHealth(this.currentHealth);
+        value.text = string.Format("{0} / {1}", currentHealth, maxHealth);
     }
 }

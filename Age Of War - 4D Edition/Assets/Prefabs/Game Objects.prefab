@@ -40,10 +40,10 @@ AudioSource:
   m_GameObject: {fileID: 123032619}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 1384784974093406031, guid: d201b310749706543b09f1b728966146, type: 2}
   m_audioClip: {fileID: 8300000, guid: 6d08456300011ff4dab8332f66b17594, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -550,6 +550,7 @@ MonoBehaviour:
   maxHealth: 150
   currentHealth: 0
   healthBar: {fileID: 0}
+  value: {fileID: 0}
 --- !u!61 &1467129487
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -676,6 +677,7 @@ MonoBehaviour:
   maxHealth: 150
   currentHealth: 0
   healthBar: {fileID: 0}
+  value: {fileID: 0}
 --- !u!61 &1855387045
 BoxCollider2D:
   m_ObjectHideFlags: 0
