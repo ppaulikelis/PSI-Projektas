@@ -14,6 +14,7 @@ public class AgeChanger : MonoBehaviour
     public GameObject unitSpawner;
     public GameObject superAttack;
     public GameObject towerPlacement;
+    public GameObject turretPlacement;
 
     public Image unit1Icon;
     public Text unit1Price;
@@ -40,7 +41,8 @@ public class AgeChanger : MonoBehaviour
         if (playerBase == null) GameObject.FindGameObjectWithTag("Player Base");
         if (unitSpawner == null) GameObject.Find("Player Unit Spawner");
         if (superAttack == null) GameObject.Find("Super Attack Spawner");
-        if (towerPlacement == null) GameObject.Find("Tower Placement");
+        if (towerPlacement == null) GameObject.Find("Tower/Turret Placement");
+        if (turretPlacement == null) GameObject.Find("Tower/Turret Placement");
     }
 
     // Changes various age related variables
@@ -59,7 +61,8 @@ public class AgeChanger : MonoBehaviour
 
             superAttack.GetComponent<SuperAttack>().superAttackObjectPrefab = currentAge.superAttackObject;
 
-            towerPlacement.GetComponent<TowerPlacement>().ReplaceTowers(currentAge.tower, currentAge.turret);
+            towerPlacement.GetComponent<TowerPlacement>().ReplaceTowers(currentAge.tower);
+            turretPlacement.GetComponent<TurretPlacement>().ReplaceTurrets(currentAge.turret);
 
             //UI
             //Units

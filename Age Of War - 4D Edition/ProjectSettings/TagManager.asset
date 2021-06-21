@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Player Base
   - Enemy Base
+  - Sell Button
+  - Buy Button
   layers:
   - Default
   - TransparentFX

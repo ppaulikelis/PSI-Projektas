@@ -15,21 +15,23 @@ public class UnitControls : MonoBehaviour
     private int isEnemyInt;
     public bool isMoving = true;
     public bool isAttacking = false;
+    public bool isAnimating = false;
 
     private Animator animator;
-    public float lastWalk = 0;
+    private UnitControls closeFriendlyController;
 
     private bool isRanged;
     private int health;
     private int damage;
     private float hitboxIncrease;
     private float movementSpeed;
-    private float trainingTime;
-    private int cost;
     private int rewardGold;
     private int rewardExperience;
 
     private SpriteRenderer[] barRenderers;
+
+    GameObject enemyBase;
+    UnitControls enemyUnit;
 
     private void Start()
     {
@@ -41,8 +43,6 @@ public class UnitControls : MonoBehaviour
         damage = unitData.damage;
         hitboxIncrease = unitData.hitboxIncrease;
         movementSpeed = unitData.movementSpeed;
-        trainingTime = unitData.trainingTime;
-        cost = unitData.cost;
         rewardGold = unitData.rewardGold;
         rewardExperience = unitData.rewardExperience;
         if (isEnemy)
@@ -75,21 +75,7 @@ public class UnitControls : MonoBehaviour
     }
 
     void Update()
-    {
-        // animations
-        animator.SetBool("Attacking", isAttacking);
-        if(lastWalk <= 0)
-        {
-            lastWalk = 0.05f;
-            animator.SetBool("Walking", isMoving);
-        }
-        if(lastWalk > 0)
-        {
-            lastWalk -= Time.deltaTime;
-        }
-     
-      
-
+    {   
         // death
         if (health <= 0)
         {
@@ -108,42 +94,46 @@ public class UnitControls : MonoBehaviour
         }
 
         // movement
-        if (isMoving)
+        if (isMoving)   // move left/right
         {
             transform.Translate(Vector2.right * Time.deltaTime * movementSpeed * isEnemyInt);
         }
-     
+        if (closeFriendlyController != null)    // if hit slower friendly unit, match speed till it's dead
+        {
+            movementSpeed = closeFriendlyController.movementSpeed;
+        }
+        else
+        {
+            movementSpeed = unitData.movementSpeed;
+        }
 
         // combat
         RaycastHit2D closeHit = Physics2D.Raycast(transform.position + new Vector3( (1.01f + hitboxIncrease) / 2 * isEnemyInt, 0, 0),
             Vector2.right * isEnemyInt, 0.1f);  // hardcoded value 0.1f can be changed to change melee attack range
         RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position + new Vector3((1.01f + hitboxIncrease) / 2 * isEnemyInt, 0, 0),
             Vector2.right * isEnemyInt, 5f);    // hardcoded value 5f can be changed to change ranged attack range
+        isMoving = !isAttacking;
         if (closeHit)   // if hit in melee range happened:
         {
-            if (HasHitFriendly(closeHit.collider.tag))  // A: if it was a friendly unit, stop movement
+            if (HasHitFriendly(closeHit.collider.tag))  // A1: if it was a friendly unit, stop movement
             {
+                closeFriendlyController = closeHit.collider.GetComponent<UnitControls>();
                 isMoving = false;
             }
-            else if (!isAttacking) // B: else it is some sort of enemy
+            else if (HasHitEnemy(closeHit.collider.tag)) // B1: if it was enemy, hit it
             {
-                if (HasHitEnemy(closeHit.collider.tag)) // B1: if it was enemy, hit it
-                {
-                    StartCoroutine(ApplyDamage(closeHit.collider.GetComponent<UnitControls>(), 1f, false));
-                }
-                else if (HasHitEnemyBase(closeHit.collider.tag))    // B2: if it was enemy base, hit it
-                {
-                    StartCoroutine(ApplyDamage(closeHit.collider.gameObject, 1f, false));
-                }
-                else if(HasHitOwnBase(closeHit.collider.tag) && !isMoving)  // B edge case: unit is stuck inside own base, start movement
-                {
-                    isMoving = true;
-                }
+                SetupDamageDealing();
+                enemyUnit = closeHit.collider.GetComponent<UnitControls>();
             }
-            else // B edge case: if is attacking already but hit an enemy - stop movement
+            else if (HasHitEnemyBase(closeHit.collider.tag))    // B2: if it was enemy base, hit it
             {
-                isMoving = false;
-            } 
+                SetupDamageDealing();
+                enemyBase = closeHit.collider.gameObject;
+            }
+            else if(HasHitOwnBase(closeHit.collider.tag) && !isMoving)  // B edge case: unit is stuck inside own base, start movement
+            {
+                isMoving = true;
+            }
         }
         else // A2: if it was a friendly unit but it's no longer in range, start movement
         {
@@ -152,25 +142,48 @@ public class UnitControls : MonoBehaviour
 
         if (isRanged && hits.Length > 0)    // C: if unit is ranged deal with attacking over long range
         {
-            foreach (var currentHit in hits)    // run trough all units seen by ray
+            if(isAttacking && enemyBase != null)    // if unit is attacking base and enemy unit is spawned in the gap, prioritize unit death
             {
-                if (!isAttacking)
+                foreach (var currentHit in hits)
                 {
-                    if (HasHitEnemy(currentHit.collider.tag))   // attack first visible enemy
-                    {
-                        StartCoroutine(ApplyDamage(currentHit.collider.GetComponent<UnitControls>(), 1f, true));
-                        break;
-                    }
-                    else if (HasHitEnemyBase(currentHit.collider.tag)) // attack first visible enemy base
-                    {
-                        StartCoroutine(ApplyDamage(currentHit.collider.gameObject, 1f, true));
+                    if (HasHitEnemy(currentHit.collider.tag))
+                    { 
+                        enemyBase = null;
+                        StopAllCoroutines();
                         break;
                     }
                 }
             }
+        
+            foreach (var currentHit in hits)    // run trough all units seen by ray
+            {
+                if (HasHitEnemy(currentHit.collider.tag))   // attack first visible enemy
+                {
+                    SetupDamageDealing();
+                    enemyUnit = currentHit.collider.GetComponent<UnitControls>();
+                    break;
+                }
+                else if (HasHitEnemyBase(currentHit.collider.tag)) // attack first visible enemy base
+                {
+                    SetupDamageDealing();
+                    enemyBase = currentHit.collider.gameObject;
+                    break;
+                }
+
+                if (isAttacking)    // if unit is already attacking, stop movement and exit loop 
+                {
+                    isMoving = false;
+                    break;
+                }
+            }
         }
+
+        // animations
+        animator.SetBool("Attacking", isAnimating);
+        animator.SetBool("Walking", isMoving);
     }
 
+    // checks for hit types
     private bool HasHitFriendly(string tag)
     {
         return tag.Equals("Friendly") && !isEnemy || tag.Equals("Enemy") && isEnemy;
@@ -191,38 +204,43 @@ public class UnitControls : MonoBehaviour
         return tag.Equals("Player Base") && !isEnemy || tag.Equals("Enemy Base") && isEnemy;
     }
 
-    IEnumerator ApplyDamage(UnitControls enemy, float cooldown, bool shouldMove)
+    // applies damage to enemy unit every "cooldown" seconds (cooldown should be animation length - 1 second)
+    IEnumerator ApplyDamage(UnitControls enemy, float cooldown)
     {
-        isMoving = shouldMove;
+        isMoving = false;
         isAttacking = true;
-        while (enemy != null)
+        while (gameObject != null && enemy != null)
         {
-            yield return new WaitForSeconds(cooldown);
+            enemy.health -= damage;
+            enemy.healthBar.SetHealth(enemy.health, enemy.unitData.health);
             if (gameObject != null && enemy != null)
             {
-                enemy.health -= damage;
-                enemy.healthBar.SetHealth(enemy.health, enemy.unitData.health);
-                enemy.animator.SetTrigger("Damaged");
+                yield return new WaitForSeconds(cooldown);
             }
-    
         }
         isMoving = true;
         isAttacking = false;
+        isAnimating = false;
         yield return null;
     }
 
-    IEnumerator ApplyDamage(GameObject enemyBase, float cooldown, bool shouldMove)
+    // applies damage to enemy base every "cooldown" seconds (cooldown should be animation length - 1 second)
+    IEnumerator ApplyDamage(GameObject enemyBase, float cooldown)
     {
-        isMoving = shouldMove;
+        isMoving = false;
         isAttacking = true;
         while (gameObject != null && enemyBase != null)
         {
-            yield return new WaitForSeconds(cooldown);
             Base baseScript = enemyBase.GetComponent<Base>();
             baseScript.TakeDamage(damage);
+            if (gameObject != null && enemyAI != null)
+            {
+                yield return new WaitForSeconds(cooldown);
+            }
         }
         isMoving = true;
         isAttacking = false;
+        isAnimating = false;
         yield return null;
     }
 
@@ -231,7 +249,31 @@ public class UnitControls : MonoBehaviour
     {
         health -= damage;
         healthBar.SetHealth(health, unitData.health);
-        //animator.SetTrigger("Damaged");
+    }
+
+    // actions triggered in middle of attack animation (can be used to apply damage, particle effects, sounds)
+    public void AnimationAttack() 
+    {
+        if(!isAttacking)
+        {
+            if (enemyUnit != null)
+            { 
+                StartCoroutine(ApplyDamage(enemyUnit, 1f));
+            }
+            else if (enemyBase != null)
+            {
+                StartCoroutine(ApplyDamage(enemyBase, 1f));
+            }
+        }
+    }  
+
+    // repetetive method to set variables
+    private void SetupDamageDealing()
+    {
+        isAttacking = false;
+        isMoving = false;
+        isAnimating = true;
+        StopAllCoroutines();
     }
 
     // OnMouse enables/disables healthbars on units when mouse is moved on top 
