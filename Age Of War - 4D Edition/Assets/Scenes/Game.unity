@@ -632,14 +632,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 387738430}
     m_Modifications:
-    - target: {fileID: 487917911, guid: e1986e648a78aa848846ead63b944d36, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 387738431}
     - target: {fileID: 605891958, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: backgroundMusic
       value: 
       objectReference: {fileID: 1124175814}
+    - target: {fileID: 2082455818110643034, guid: e1986e648a78aa848846ead63b944d36, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 2347230084394025776}
     - target: {fileID: 2082455818217197162, guid: e1986e648a78aa848846ead63b944d36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -748,6 +748,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7485905032736260905, guid: e1986e648a78aa848846ead63b944d36, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 387738431}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1986e648a78aa848846ead63b944d36, type: 3}
 --- !u!114 &2082455818224727749 stripped
@@ -821,6 +825,11 @@ PrefabInstance:
 --- !u!4 &2347230084394025775 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7104243341707115624, guid: 0dcef4106c8a93440b73933d03bf3e8a, type: 3}
+  m_PrefabInstance: {fileID: 2347230084394025774}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &2347230084394025776 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2347230082883789945, guid: 0dcef4106c8a93440b73933d03bf3e8a, type: 3}
   m_PrefabInstance: {fileID: 2347230084394025774}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6882332758127446487
@@ -1020,34 +1029,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 387738430}
     m_Modifications:
-    - target: {fileID: 8179917798393342253, guid: 2853940c31fcf004dbe2e3984d9db4f6, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 09a2b1f89ec66a14cae7d30bb8724dfe, type: 3}
-    - target: {fileID: 8179917798393342253, guid: 2853940c31fcf004dbe2e3984d9db4f6, type: 3}
-      propertyPath: m_Color.b
-      value: 0.59401923
-      objectReference: {fileID: 0}
-    - target: {fileID: 8179917798393342253, guid: 2853940c31fcf004dbe2e3984d9db4f6, type: 3}
-      propertyPath: m_Color.g
-      value: 0.66381687
-      objectReference: {fileID: 0}
-    - target: {fileID: 8179917798393342253, guid: 2853940c31fcf004dbe2e3984d9db4f6, type: 3}
-      propertyPath: m_Color.r
-      value: 0.764151
-      objectReference: {fileID: 0}
-    - target: {fileID: 8179917799283866039, guid: 2853940c31fcf004dbe2e3984d9db4f6, type: 3}
-      propertyPath: m_FlipX
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8179917799400291419, guid: 2853940c31fcf004dbe2e3984d9db4f6, type: 3}
-      propertyPath: m_FlipX
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8179917799501871002, guid: 2853940c31fcf004dbe2e3984d9db4f6, type: 3}
-      propertyPath: m_FlipX
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8179917799825697587, guid: 2853940c31fcf004dbe2e3984d9db4f6, type: 3}
       propertyPath: m_Name
       value: Background Objects
@@ -1094,10 +1075,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8179917799825697596, guid: 2853940c31fcf004dbe2e3984d9db4f6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8179917800103754673, guid: 2853940c31fcf004dbe2e3984d9db4f6, type: 3}
-      propertyPath: m_FlipX
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

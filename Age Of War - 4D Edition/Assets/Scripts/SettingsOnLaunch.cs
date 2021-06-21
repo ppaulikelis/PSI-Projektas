@@ -5,8 +5,7 @@ public class SettingsOnLaunch : MonoBehaviour
 {
     public AudioMixer audioMixer;
 
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    private void SettingsApplier()
+    void Start()
     {
         //Fullscreen
         if (PlayerPrefs.HasKey("isFullscreen"))
@@ -40,5 +39,7 @@ public class SettingsOnLaunch : MonoBehaviour
             PlayerPrefs.SetInt("sfxVolume", 0);
             audioMixer.SetFloat("sfxVolume", 0);
         }
+
+        SceneControl.LoadScene("Start Menu");
     }
 }
