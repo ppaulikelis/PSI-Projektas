@@ -93,6 +93,14 @@ public class TurretPlacement : MonoBehaviour
         isSelling = false;
         if(newTurret != null)
         {
+            TurretController[] allControllers = FindObjectsOfType<TurretController>();
+            foreach(var turret in allControllers)
+            {
+                if(turret.enabled == false)
+                {
+                    Destroy(turret.gameObject);
+                }
+            }
             newTurret = null;
         }
         SetCancelEnable(false);
@@ -155,21 +163,5 @@ public class TurretPlacement : MonoBehaviour
         {
             turretsData[i] = newTurret;
         }
-        //TurretController[] turrets = this.GetComponentsInChildren<TurretController>();
-        /*foreach (var turret in turrets)
-        {
-            //turret.transform.localPosition = Vector2.zero;
-            //turret.GetComponentInChildren<TextMesh>().text = newTurret.price.ToString();
-            //turret.turretData = newTurret;
-
-            if (!turret.enabled)
-            {
-                //turret.turretData = newTurret;
-                turret.UpdateVariables();
-                turret.bullet = newTurret.bullet;
-                turret.GetComponent<SpriteRenderer>().sprite = newTurret.artwork;
-                turret.GetComponent<Animator>().runtimeAnimatorController = newTurret.animator;
-            }
-        }*/
     }
 }
