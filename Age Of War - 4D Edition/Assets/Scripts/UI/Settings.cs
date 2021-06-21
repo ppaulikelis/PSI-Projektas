@@ -27,13 +27,17 @@ public class Settings : MonoBehaviour
 
     public void SetMusicVolume(float volume)
     {
-        audioMixer.SetFloat("musicVolume", volume * 10);
+        float x = volume;
+        audioMixer.SetFloat("musicVolume", (Mathf.Pow(x + 10, 1f / 2f) * 2f - 6.325f) * 10);  // antro laipsnio saknis
+        //audioMixer.SetFloat("musicVolume", (Mathf.Pow(x+10, 1f / 3f) * 3f - 6.463f) * 10);  // trecio laipsnio saknis
         PlayerPrefs.SetFloat("musicVolume", volume);
     }
 
     public void SetSfxVolume(float volume)
     {
-        audioMixer.SetFloat("sfxVolume", volume * 10);
+        float x = volume;
+        audioMixer.SetFloat("sfxVolume", (Mathf.Pow(x + 10, 1f / 2f) * 2f - 6.325f) * 10);  // antro laipsnio saknis
+        //audioMixer.SetFloat("musicVolume", (Mathf.Pow(x+10, 1f / 3f) * 3f - 6.463f) * 10);  // trecio laipsnio saknis
         PlayerPrefs.SetFloat("sfxVolume", volume);
     }
 

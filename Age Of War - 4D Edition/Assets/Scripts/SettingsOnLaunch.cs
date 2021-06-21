@@ -21,23 +21,27 @@ public class SettingsOnLaunch : MonoBehaviour
         //Music
         if (PlayerPrefs.HasKey("musicVolume"))
         {
-            audioMixer.SetFloat("musicVolume", PlayerPrefs.GetFloat("musicVolume") * 10);
+            float x = PlayerPrefs.GetFloat("musicVolume");
+            audioMixer.SetFloat("musicVolume", (Mathf.Pow(x + 10, 1f / 2f) * 2f - 6.325f) * 10);  // antro laipsnio saknis
+            //audioMixer.SetFloat("musicVolume", (Mathf.Pow(x + 10, 1f / 3f) * 3f - 6.463f) * 10);  // trecio laipsnio saknis
         }
         else
         {
-            PlayerPrefs.SetInt("musicVolume", 0);
-            audioMixer.SetFloat("musicVolume", 0);
+            PlayerPrefs.SetInt("musicVolume", -20);
+            audioMixer.SetFloat("musicVolume", -20);
         }
 
         //SFX
         if (PlayerPrefs.HasKey("sfxVolume"))
         {
-            audioMixer.SetFloat("sfxVolume", PlayerPrefs.GetFloat("sfxVolume") * 10);
+            float x = PlayerPrefs.GetFloat("sfxVolume");
+            audioMixer.SetFloat("sfxVolume", (Mathf.Pow(x + 10, 1f / 2f) * 2f - 6.325f) * 10);  // antro laipsnio saknis
+            //audioMixer.SetFloat("musicVolume", (Mathf.Pow(x + 10, 1f / 3f) * 3f - 6.463f) * 10);  // trecio laipsnio saknis
         }
         else
         {
-            PlayerPrefs.SetInt("sfxVolume", 0);
-            audioMixer.SetFloat("sfxVolume", 0);
+            PlayerPrefs.SetInt("sfxVolume", -20);
+            audioMixer.SetFloat("sfxVolume", -20);
         }
 
         SceneControl.LoadScene("Start Menu");
